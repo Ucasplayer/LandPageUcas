@@ -1,4 +1,4 @@
-import source from "../src/home.html?raw";
+import source from "../index.html?raw";
 import ClientInit from "./client-init";
 
 const bodyMarkup =
