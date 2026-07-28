@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.next/
+.visual-check/
+.agents/
+.claude/
+.codex/
+.gemini/
+.impeccable-direction.json
+.impeccable-surface-brief.md
+.impeccable/questions/

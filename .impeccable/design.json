@@ -1,0 +1,143 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-07-28T17:03:46-03:00",
+  "title": "Design System: Ucas — Perfil de Produção",
+  "extensions": {
+    "colorMeta": {
+      "night": {
+        "role": "neutral",
+        "displayName": "Night",
+        "canonical": "#0c0912",
+        "tonalRamp": ["#0c0912", "#14101c", "#1a1524", "#26202f", "#4e4758", "#81788d", "#c7bfce", "#f4f1f8"]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Surface",
+        "canonical": "#14101c",
+        "tonalRamp": ["#0c0912", "#14101c", "#1a1524", "#26202f", "#4e4758", "#81788d", "#c7bfce", "#f4f1f8"]
+      },
+      "violet": {
+        "role": "primary",
+        "displayName": "Violet",
+        "canonical": "#7c4de3",
+        "tonalRamp": ["#211438", "#38215f", "#53318f", "#7044df", "#7c4de3", "#a78bfa", "#cec0ff", "#eee8ff"]
+      },
+      "loud-green": {
+        "role": "secondary",
+        "displayName": "LOUD Green",
+        "canonical": "#00c46a",
+        "tonalRamp": ["#032a19", "#064a2c", "#087643", "#00a75a", "#00c46a", "#52dc94", "#9decc0", "#ddf9e9"]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "System Display",
+        "purpose": "Identity and section headings using the native system stack."
+      },
+      "body": {
+        "displayName": "System Body",
+        "purpose": "Copy, metadata and controls using the native system stack."
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "quiet-ease",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Short hover and copy-state transitions."
+      }
+    ],
+    "breakpoints": [
+      { "name": "mobile", "value": "560px" },
+      { "name": "narrow", "value": "360px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Profile Action",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Primary violet action that copies the Discord username.",
+      "html": "<button class=\"button button-primary\"><small>Copiar Discord</small><strong>@eaeucas</strong></button>",
+      "css": ".button-primary{min-height:58px;background:#7c4de3;color:#fff;border:0;border-radius:13px}"
+    },
+    {
+      "name": "Editorial Row",
+      "kind": "link",
+      "refersTo": "editorial-row",
+      "description": "Compact proof of Ucas's work with LOUD Comments.",
+      "html": "<a class=\"editorial-row\"><img src=\"/loud-comments.jpg\" alt=\"\"><strong>LOUD Comments</strong></a>",
+      "css": ".editorial-row{min-height:126px;padding:18px;display:grid;grid-template-columns:76px 1fr 22px;gap:16px;border:1px solid #26202f;border-radius:14px}"
+    },
+    {
+      "name": "Project Row",
+      "kind": "link",
+      "refersTo": "project-row",
+      "description": "Repository proof with brand, description and public GitHub metadata.",
+      "html": "<a class=\"project-row\"><span class=\"project-mark\"></span><strong>XenthorLauncher</strong></a>",
+      "css": ".project-row{min-height:104px;padding:14px;display:grid;grid-template-columns:68px 1fr 22px;gap:16px;background:#14101c;border-radius:14px}"
+    },
+    {
+      "name": "Contact Row",
+      "kind": "link",
+      "refersTo": "contact-row",
+      "description": "Direct contact route with visible channel and value.",
+      "html": "<a class=\"contact-row\"><strong>E-mail</strong><span>lucasrcomercial1@gmail.com</span></a>",
+      "css": ".contact-row{min-height:72px;padding:12px 16px;display:grid;grid-template-columns:42px 1fr 22px;gap:14px;background:#14101c;border-radius:14px}"
+    },
+    {
+      "name": "Channel Row",
+      "kind": "link",
+      "refersTo": "channel-row",
+      "description": "Compact YouTube channel proof with channel name and subject.",
+      "html": "<a class=\"channel-row\"><span class=\"youtube-mark\"></span><strong>Ucasix</strong><span>Grand Theft Auto</span></a>",
+      "css": ".channel-row{min-height:76px;padding:10px 12px;display:grid;grid-template-columns:42px 1fr 18px;gap:12px;background:#14101c;border-radius:14px}"
+    },
+    {
+      "name": "About Timeline",
+      "kind": "custom",
+      "refersTo": "timeline",
+      "description": "Biography milestones based on confirmed ages and relative sequence.",
+      "html": "<ol class=\"timeline\"><li><span>Aos 15 anos</span><p>Criei meu primeiro canal.</p></li></ol>",
+      "css": ".timeline{position:relative;padding-left:28px;display:grid;gap:24px}.timeline:before{position:absolute;left:7px;width:1px;background:#26202f;content:''}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Perfil de Produção",
+    "overview": "Uma única coluna transforma identidade, especialidades, provas e contato em uma leitura curta e verificável.",
+    "keyCharacteristics": [
+      "Coluna central de até 620px.",
+      "Sistema tipográfico nativo e compacto.",
+      "Roxo reservado para a principal ação de contato.",
+      "Projetos e contatos organizados como linhas.",
+      "Espaço vazio separa grupos sem seções monumentais."
+    ],
+    "rules": [
+      {
+        "name": "One Primary Purple Rule",
+        "body": "Cada contexto tem somente uma ação violeta dominante.",
+        "section": "colors"
+      },
+      {
+        "name": "Proof Before Promotion Rule",
+        "body": "Trabalho verificável vem antes de texto promocional adicional.",
+        "section": "layout"
+      },
+      {
+        "name": "One Column Rule",
+        "body": "Desktop e mobile mantêm a mesma ordem de leitura em uma coluna.",
+        "section": "layout"
+      }
+    ],
+    "dos": [
+      "Do manter identidade, especialidades, provas e contato encontráveis rapidamente.",
+      "Do preservar as marcas fornecidas sem filtros.",
+      "Do usar diferença de superfície para agrupar linhas."
+    ],
+    "donts": [
+      "Don't usar portais, partículas, órbitas ou cenas decorativas.",
+      "Don't criar títulos monumentais ou seções de tela cheia.",
+      "Don't inventar métricas, clientes ou disponibilidade."
+    ]
+  }
+}
