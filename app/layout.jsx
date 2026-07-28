@@ -1,4 +1,4 @@
-import "../src/style.css";
+
 
 export const metadata = {
   title: "Ucas — Editor de vídeo & Developer",
