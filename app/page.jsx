@@ -4,7 +4,10 @@ import ClientInit from "./client-init";
 const bodyMarkup =
   source
     .match(/<body[^>]*>([\s\S]*?)<\/body>/i)?.[1]
-    ?.replace(/<script[^>]*src="\/src\/main\.js"[^>]*><\/script>/i, "") ?? "";
+    ?.replace(
+      /<script[^>]*src="\/src\/main\.js"[^>]*><\/script>/i,
+      "",
+    ) ?? "";
 
 export default function HomePage() {
   return (
