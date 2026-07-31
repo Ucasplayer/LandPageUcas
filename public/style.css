@@ -600,6 +600,10 @@ svg {
   font-weight: 750;
 }
 
+.row-copy .row-kicker-muted {
+  color: var(--muted);
+}
+
 .row-copy small {
   margin-top: 3px;
   display: flex;

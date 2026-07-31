@@ -142,6 +142,33 @@ import{t as e}from"./framework~index~page~layout~page~page~app-page-cache-render
           </svg>\r
         </a>\r
 \r
+        <a\r
+          class="editorial-row"\r
+          href="https://x.com/HospicioLoudete"\r
+          target="_blank"\r
+          rel="noreferrer"\r
+          aria-label="Ver Hospício Loudete no X"\r
+        >\r
+          <img\r
+            src="/hospicio-loudete.jpg"\r
+            alt="Foto de perfil da página Hospício Loudete"\r
+            width="400"\r
+            height="400"\r
+            loading="lazy"\r
+          />\r
+          <span class="row-copy">\r
+            <span class="row-kicker row-kicker-muted">CEO &amp; Content Management</span>\r
+            <strong>Hospício Loudete</strong>\r
+            <span>\r
+              CEO e fundador da maior fanbase da LOUD, conectando e influenciando milhares\r
+              de pessoas em objetivos comuns, notícias e iniciativas da comunidade.\r
+            </span>\r
+          </span>\r
+          <svg class="row-arrow" aria-hidden="true" viewBox="0 0 24 24">\r
+            <path d="M5 19 19 5M9 5h10v10" />\r
+          </svg>\r
+        </a>\r
+\r
         <h3 class="channel-heading">Meus canais</h3>\r
         <div class="channel-list">\r
           <a\r
