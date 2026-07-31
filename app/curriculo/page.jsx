@@ -88,7 +88,7 @@ export default function CurriculoPage() {
               <div className="resume-entry">
                 <div className="resume-entry-head">
                   <strong>Editor de vídeo e Creative Manager</strong>
-                  <span>2021</span>
+                  <span>2025-2026</span>
                 </div>
                 <p className="resume-entry-company">@loudcomments e @hospicioloudelite</p>
                 <ul>
@@ -101,7 +101,7 @@ export default function CurriculoPage() {
 
               <div className="resume-entry">
                 <div className="resume-entry-head">
-                  <strong>Freelancer Developer</strong>
+                  <strong>Freelancer Developer 2026</strong>
                 </div>
                 <ul>
                   <li>
