@@ -8,7 +8,7 @@ export const metadata = {
   openGraph: {
     title: "Ucas — Editor de vídeo & Developer",
     description:
-      "Edição e desenvolvimento para projetos de Minecraft e criadores.",
+      "Edição e desenvolvimento para projetos.",
   },
 };
 
