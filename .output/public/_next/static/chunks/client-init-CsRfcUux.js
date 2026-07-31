@@ -1,0 +1,1 @@
+import{r as e}from"./rolldown-runtime-QTnfLwEv.js";import{r as t}from"./framework-BQUlGUOV.js";import{t as n}from"./index-CaSh5MMA.js";var r=e(t(),1);function i(){return(0,r.useEffect)(()=>{n(()=>import(`./main-BuX_U2vJ.js`),[])},[]),null}export{i as default};
