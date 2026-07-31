@@ -241,7 +241,7 @@ svg {
 }
 
 .profile-actions {
-  max-width: 470px;
+  max-width: 255px;
   margin: 28px auto 0;
   display: grid;
   grid-template-columns: 1fr;
@@ -304,6 +304,15 @@ svg {
 
 .button-primary strong {
   font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.button-primary-centered {
+  justify-content: center;
+}
+
+.button-primary-centered .button-arrow {
+  margin-left: 0;
 }
 
 .button-secondary {

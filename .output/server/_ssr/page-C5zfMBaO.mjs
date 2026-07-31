@@ -73,7 +73,7 @@ import{t as e}from"./framework~index~page~layout~page~page~app-page-cache-render
         </p>\r
 \r
         <div class="profile-actions">\r
-          <a class="button button-primary" href="/curriculo">\r
+          <a class="button button-primary button-primary-centered" href="/curriculo">\r
             <svg aria-hidden="true" viewBox="0 0 24 24">\r
               <path\r
                 d="M15 2H6a2 2 0 0 0-2 2v16l4-2.2 4 2.2 4-2.2 4 2.2V7l-5-5Z"\r
