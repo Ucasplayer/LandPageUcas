@@ -1,0 +1,1 @@
+import{n as e,t}from"./react-6w5pZfgw.mjs";var n=e(t(),1);function r(){return(0,n.useEffect)(()=>{import(`./main-CgiLWSk5.mjs`)},[]),null}export{r as default};

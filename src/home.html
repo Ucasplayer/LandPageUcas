@@ -3,7 +3,7 @@
   THESIS: Um perfil profissional concentrado substitui a antiga narrativa de portal e recusa seções monumentais.
   OWN-WORLD: Fundo ameixa quase preto, superfícies discretas, coluna de 620px, cantos de 14px e um único violeta de ação.
   STORY: O visitante identifica Ucas, entende suas especialidades, verifica trabalhos reais e inicia contato.
-  FIRST VIEWPORT: Avatar, nome, função, frase curta, Discord, GitHub e quatro especialidades — sem ilustração decorativa.
+  FIRST VIEWPORT: Avatar, nome, função, frase curta e currículo resumido — sem ilustração decorativa.
   FORM: Perfil de produção em coluna única, escolhido pela referência direta ao Flow de Dados; composição compacta e responsiva.
 -->
 <html lang="pt-BR">
@@ -72,41 +72,103 @@
           projetos prontos para o público.
         </p>
 
-        <div class="profile-actions">
-          <button class="button button-primary" type="button" data-copy-discord>
-            <svg aria-hidden="true" viewBox="0 0 24 24">
-              <path
-                d="M19.5 5.3A16.6 16.6 0 0 0 15.4 4l-.5 1a14.3 14.3 0 0 0-5.8 0l-.5-1a16.4 16.4 0 0 0-4.1 1.3C1.9 9.1 1.2 12.8 1.6 16.5A16.9 16.9 0 0 0 6.7 19l1.2-1.7a10.8 10.8 0 0 1-1.8-.9l.4-.3c3.5 1.6 7.3 1.6 10.9 0l.5.3c-.6.4-1.2.7-1.8.9l1.2 1.7a17 17 0 0 0 5.1-2.5c.5-4.3-.8-8-2.9-11.2ZM8.5 14.8c-1 0-1.9-1-1.9-2.2s.8-2.2 1.9-2.2 1.9 1 1.9 2.2-.9 2.2-1.9 2.2Zm7 0c-1 0-1.9-1-1.9-2.2s.8-2.2 1.9-2.2 1.9 1 1.9 2.2-.9 2.2-1.9 2.2Z"
-              />
-            </svg>
-            <span>
-              <small data-copy-label>Copiar Discord</small>
-              <strong>@eaeucas</strong>
-            </span>
-            <svg class="button-arrow" aria-hidden="true" viewBox="0 0 24 24">
-              <path d="m9 6 6 6-6 6" />
-            </svg>
-          </button>
+        <article class="resume-card" aria-labelledby="resume-title">
+          <h2 id="resume-title">Currículo</h2>
 
-          <a
-            class="button button-secondary"
-            href="https://github.com/Ucasplayer"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Ver portfólio no GitHub
-            <svg class="button-arrow" aria-hidden="true" viewBox="0 0 24 24">
-              <path d="m9 6 6 6-6 6" />
-            </svg>
-          </a>
-        </div>
+          <p class="resume-meta">
+            lucasrcomercial1@gmail.com <span aria-hidden="true">•</span> (21)99111-0119
+            <span aria-hidden="true">•</span> Rio de Janeiro, RJ
+          </p>
 
-        <ul class="service-tags" aria-label="Especialidades">
-          <li>Edição de vídeo</li>
-          <li>Bots para Discord</li>
-          <li>Launchers</li>
-          <li>Mods</li>
-        </ul>
+          <section class="resume-block" aria-labelledby="resume-summary-title">
+            <h3 id="resume-summary-title">Resumo profissional</h3>
+            <p>
+              Profissional de TI com experiência em suporte técnico, edição de vídeo e
+              desenvolvimento criativo. Atingi um aumento de 30% nas visualizações de páginas
+              nas redes sociais e tenho habilidades em desenvolvimento de projetos e marketing
+              digital.
+            </p>
+          </section>
+
+          <section class="resume-block" aria-labelledby="resume-experience-title">
+            <h3 id="resume-experience-title">Experiência profissional</h3>
+
+            <div class="resume-entry">
+              <div class="resume-entry-head">
+                <strong>Estagiário de TI</strong>
+                <span>2021</span>
+              </div>
+              <p class="resume-entry-company">Van Security T.I</p>
+              <ul>
+                <li>Prestei suporte técnico e em redes, contribuindo para a eficiência da equipe.</li>
+              </ul>
+            </div>
+
+            <div class="resume-entry">
+              <div class="resume-entry-head">
+                <strong>Editor de vídeo e Creative Manager</strong>
+                <span>2021</span>
+              </div>
+              <p class="resume-entry-company">@loudcomments e @hospicioloudelite</p>
+              <ul>
+                <li>
+                  Aumentei as visualizações em 30% nas páginas, alcançando milhares de
+                  visualizações e ampliando o público.
+                </li>
+              </ul>
+            </div>
+
+            <div class="resume-entry">
+              <div class="resume-entry-head">
+                <strong>Freelancer Developer</strong>
+              </div>
+              <ul>
+                <li>
+                  Desenvolvi mods em Java para servidores de Minecraft e criei launchers, além de
+                  gerenciar marketing de conteúdo nas redes sociais.
+                </li>
+              </ul>
+            </div>
+          </section>
+
+          <section class="resume-block" aria-labelledby="resume-education-title">
+            <h3 id="resume-education-title">Formação acadêmica</h3>
+            <p class="resume-single-line">
+              Bacharel em Ciências da Computação<br />
+              UNESA (Universidade Estácio)
+            </p>
+          </section>
+
+          <section class="resume-block" aria-labelledby="resume-skills-title">
+            <h3 id="resume-skills-title">Habilidades técnicas</h3>
+            <ul class="resume-skill-tags">
+              <li>Edição de vídeo</li>
+              <li>Desenvolvimento de projetos</li>
+              <li>Suporte de TI</li>
+              <li>Redes</li>
+              <li>Helpdesk</li>
+              <li>Uso de IA</li>
+              <li>Criação de conteúdo para mídias sociais</li>
+              <li>Pacote Office</li>
+            </ul>
+          </section>
+
+          <section class="resume-block" aria-labelledby="resume-languages-title">
+            <h3 id="resume-languages-title">Idiomas</h3>
+            <ul>
+              <li>Inglês — Básico</li>
+            </ul>
+          </section>
+
+          <section class="resume-block" aria-labelledby="resume-certifications-title">
+            <h3 id="resume-certifications-title">Certificações</h3>
+            <ul>
+              <li>Informática avançada</li>
+              <li>Curso de Inglês Mário Vergara</li>
+              <li>Curso de Música Adesa Musical</li>
+            </ul>
+          </section>
+        </article>
       </section>
 
       <section class="content-section" id="trabalhos" aria-labelledby="work-title">

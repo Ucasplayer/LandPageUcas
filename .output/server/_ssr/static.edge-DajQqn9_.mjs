@@ -1,0 +1,1 @@
+import{r as e}from"./react-6w5pZfgw.mjs";import{t}from"./ssr.mjs";var n=e((e=>{var n=t();e.version=n.version,e.prerender=n.prerender,e.resumeAndPrerender=n.resumeAndPrerender}))();export{n as default};
