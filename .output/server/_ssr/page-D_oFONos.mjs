@@ -87,31 +87,19 @@ import{t as e}from"./framework~index~page~layout~page~page~app-page-cache-render
               <path d="m9 6 6 6-6 6" />\r
             </svg>\r
           </a>\r
-\r
-          <a\r
-            class="button button-secondary"\r
-            href="https://github.com/Ucasplayer"\r
-            target="_blank"\r
-            rel="noreferrer"\r
-          >\r
-            Ver portfólio no GitHub\r
-            <svg class="button-arrow" aria-hidden="true" viewBox="0 0 24 24">\r
-              <path d="m9 6 6 6-6 6" />\r
-            </svg>\r
-          </a>\r
         </div>\r
 \r
         <ul class="service-tags" aria-label="Especialidades">\r
           <li>Edição de vídeo</li>\r
           <li>Bots para Discord</li>\r
-          <li>Launchers</li>\r
-          <li>Mods</li>\r
+          <li>Launchers Minecraft</li>\r
+          <li>Mods Minecraft</li>\r
         </ul>\r
       </section>\r
 \r
       <section class="content-section" id="trabalhos" aria-labelledby="work-title">\r
         <div class="section-heading">\r
-          <h2 id="work-title">Edição de vídeo</h2>\r
+          <h2 id="work-title">Trabalhos & Projetos</h2>\r
           <p>Trabalho editorial e canais pessoais construídos em temas diferentes.</p>\r
         </div>\r
 \r
@@ -427,7 +415,7 @@ import{t as e}from"./framework~index~page~layout~page~page~app-page-cache-render
           <img src="/ucas-avatar.jpg" alt="" width="28" height="28" loading="lazy" />\r
           <span>Ucas</span>\r
         </div>\r
-        <p>Edição de vídeo e desenvolvimento para projetos de Minecraft.</p>\r
+        <p>© 2026 eaeucas. Todos os direitos reservados.</p>\r
       </footer>\r
     </main>\r
 \r
