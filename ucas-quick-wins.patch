@@ -1,0 +1,563 @@
+diff --git a/app/layout.jsx b/app/layout.jsx
+index 8984e8e..5e65616 100644
+--- a/app/layout.jsx
++++ b/app/layout.jsx
+@@ -1,3 +1,5 @@
++import SiteEffects from "./site-effects";
++
+ export const metadata = {
+   title: "Ucas — Editor de vídeo & Developer",
+   description:
+@@ -24,7 +26,13 @@ export default function RootLayout({ children }) {
+       <head>
+         <link rel="stylesheet" href="/style.css" />
+       </head>
+-      <body>{children}</body>
++      <body>
++        <div className="scroll-progress" aria-hidden="true">
++          <div className="scroll-progress-bar" data-scroll-progress />
++        </div>
++        {children}
++        <SiteEffects />
++      </body>
+     </html>
+   );
+ }
+\ No newline at end of file
+diff --git a/app/site-effects.jsx b/app/site-effects.jsx
+new file mode 100644
+index 0000000..74e28cf
+--- /dev/null
++++ b/app/site-effects.jsx
+@@ -0,0 +1,68 @@
++"use client";
++
++import { useEffect } from "react";
++
++const KONAMI_SEQUENCE = [
++  "ArrowUp",
++  "ArrowUp",
++  "ArrowDown",
++  "ArrowDown",
++  "ArrowLeft",
++  "ArrowRight",
++  "ArrowLeft",
++  "ArrowRight",
++  "b",
++  "a",
++];
++
++export default function SiteEffects() {
++  useEffect(() => {
++    const bar = document.querySelector("[data-scroll-progress]");
++
++    const updateProgress = () => {
++      if (!bar) return;
++      const doc = document.documentElement;
++      const scrollable = doc.scrollHeight - doc.clientHeight;
++      const progress = scrollable > 0 ? (doc.scrollTop / scrollable) * 100 : 0;
++      bar.style.width = `${Math.min(100, Math.max(0, progress))}%`;
++    };
++
++    updateProgress();
++    window.addEventListener("scroll", updateProgress, { passive: true });
++    window.addEventListener("resize", updateProgress);
++
++    let matchLength = 0;
++    let eggTimeout;
++
++    const handleKeydown = (event) => {
++      const key = event.key.length === 1 ? event.key.toLowerCase() : event.key;
++      const expected = KONAMI_SEQUENCE[matchLength];
++
++      if (key === expected) {
++        matchLength += 1;
++      } else {
++        matchLength = key === KONAMI_SEQUENCE[0] ? 1 : 0;
++      }
++
++      if (matchLength === KONAMI_SEQUENCE.length) {
++        matchLength = 0;
++        document.body.classList.add("easter-egg-active");
++        window.clearTimeout(eggTimeout);
++        eggTimeout = window.setTimeout(() => {
++          document.body.classList.remove("easter-egg-active");
++        }, 1600);
++      }
++    };
++
++    window.addEventListener("keydown", handleKeydown);
++
++    return () => {
++      window.removeEventListener("scroll", updateProgress);
++      window.removeEventListener("resize", updateProgress);
++      window.removeEventListener("keydown", handleKeydown);
++      window.clearTimeout(eggTimeout);
++    };
++  }, []);
++
++  return null;
++}
+diff --git a/public/style.css b/public/style.css
+index 43bbd32..e233840 100644
+--- a/public/style.css
++++ b/public/style.css
+@@ -370,8 +370,7 @@ svg {
+   color: var(--text);
+   font-size: 0.84rem;
+   font-weight: 780;
+-  text-transform: uppercase;
+-  letter-spacing: 0.06em;
++  letter-spacing: -0.015em;
+ }
+ 
+ .resume-meta {
+@@ -380,10 +379,8 @@ svg {
+   flex-wrap: wrap;
+   gap: 9px;
+   color: var(--muted);
+-  font-size: 0.68rem;
++  font-size: 0.72rem;
+   font-weight: 700;
+-  text-transform: uppercase;
+-  letter-spacing: 0.05em;
+ }
+ 
+ .resume-block {
+@@ -394,20 +391,16 @@ svg {
+ 
+ .resume-block h3 {
+   margin: 0;
+-  color: #7f875e;
+-  font-size: 0.67rem;
++  color: var(--violet-soft);
++  font-size: 0.76rem;
+   font-weight: 780;
+-  text-transform: uppercase;
+-  letter-spacing: 0.08em;
+ }
+ 
+ .resume-block p,
+ .resume-block li {
+-  color: var(--text);
+-  font-size: 0.76rem;
++  color: var(--copy);
++  font-size: 0.82rem;
+   line-height: 1.65;
+-  text-transform: uppercase;
+-  letter-spacing: 0.03em;
+ }
+ 
+ .resume-block p {
+@@ -422,15 +415,15 @@ svg {
+ 
+ .resume-block li {
+   position: relative;
+-  padding-left: 12px;
++  padding-left: 16px;
+ }
+ 
+ .resume-block li::before {
+   position: absolute;
+   top: 0;
+   left: 0;
+-  color: #e39b57;
+-  content: ">";
++  color: var(--violet-soft);
++  content: "›";
+ }
+ 
+ .resume-entry + .resume-entry {
+@@ -448,27 +441,21 @@ svg {
+ 
+ .resume-entry-head strong {
+   color: var(--text);
+-  font-size: 0.78rem;
++  font-size: 0.86rem;
+   line-height: 1.45;
+-  text-transform: uppercase;
+-  letter-spacing: 0.035em;
+ }
+ 
+ .resume-entry-head span {
+   color: var(--muted);
+-  font-size: 0.66rem;
++  font-size: 0.68rem;
+   font-weight: 700;
+-  text-transform: uppercase;
+-  letter-spacing: 0.06em;
+ }
+ 
+ .resume-entry-company {
+   margin-top: 6px;
+   color: var(--muted);
+-  font-size: 0.67rem;
++  font-size: 0.74rem;
+   font-weight: 700;
+-  text-transform: uppercase;
+-  letter-spacing: 0.05em;
+ }
+ 
+ .resume-single-line {
+@@ -490,12 +477,10 @@ svg {
+   display: inline-flex;
+   align-items: center;
+   border: 1px solid var(--line);
+-  border-radius: 2px;
+-  color: var(--text);
+-  font-size: 0.67rem;
+-  font-weight: 760;
+-  text-transform: uppercase;
+-  letter-spacing: 0.04em;
++  border-radius: 999px;
++  color: var(--muted);
++  font-size: 0.72rem;
++  font-weight: 700;
+ }
+ 
+ .resume-skill-tags li::before {
+@@ -981,6 +966,103 @@ footer p {
+   color: #fff;
+ }
+ 
++.scroll-progress {
++  position: fixed;
++  top: 0;
++  left: 0;
++  z-index: 30;
++  width: 100%;
++  height: 3px;
++  background: transparent;
++  pointer-events: none;
++}
++
++.scroll-progress-bar {
++  width: 0%;
++  height: 100%;
++  background: var(--violet-soft);
++  transition: width 120ms linear;
++}
++
++.role-rotator {
++  position: relative;
++  display: inline-block;
++  min-height: 1.3em;
++  vertical-align: top;
++}
++
++.role-rotator span {
++  position: absolute;
++  top: 0;
++  left: 50%;
++  transform: translateX(-50%);
++  white-space: nowrap;
++  opacity: 0;
++  animation: role-cycle 9s var(--ease-out) infinite;
++}
++
++.role-rotator span:nth-child(2) {
++  animation-delay: 3s;
++}
++
++.role-rotator span:nth-child(3) {
++  animation-delay: 6s;
++}
++
++@keyframes role-cycle {
++  0%,
++  2% {
++    opacity: 0;
++  }
++  8%,
++  27% {
++    opacity: 1;
++  }
++  33%,
++  100% {
++    opacity: 0;
++  }
++}
++
++body.easter-egg-active .mini-brand img,
++body.easter-egg-active .profile-avatar img {
++  animation: easter-egg-spin 1.4s var(--ease-out);
++}
++
++@keyframes easter-egg-spin {
++  0% {
++    transform: rotate(0deg) scale(1);
++  }
++  45% {
++    transform: rotate(360deg) scale(1.14);
++  }
++  100% {
++    transform: rotate(360deg) scale(1);
++  }
++}
++
++@media (prefers-reduced-motion: reduce) {
++  .role-rotator span {
++    position: static;
++    display: block;
++    animation: none;
++    opacity: 1;
++  }
++
++  .role-rotator span:nth-child(n + 2) {
++    display: none;
++  }
++
++  .scroll-progress-bar {
++    transition: none;
++  }
++
++  body.easter-egg-active .mini-brand img,
++  body.easter-egg-active .profile-avatar img {
++    animation: none;
++  }
++}
++
+ @media (max-width: 560px) {
+   :root {
+     --container: calc(100% - 24px);
+diff --git a/src/home.html b/src/home.html
+index 17e978d..708a8a0 100644
+--- a/src/home.html
++++ b/src/home.html
+@@ -66,7 +66,13 @@
+           />
+         </div>
+         <h1 id="page-title">Ucas</h1>
+-        <p class="profile-role">Editor de vídeo &amp; developer</p>
++        <p class="profile-role">
++          <span class="role-rotator" aria-label="Editor de vídeo, developer e músico">
++            <span aria-hidden="true">Editor de vídeo</span>
++            <span aria-hidden="true">Developer</span>
++            <span aria-hidden="true">Músico</span>
++          </span>
++        </p>
+         <p class="profile-intro">
+           Crio vídeos, bots para Discord, launchers e mods para transformar ideias em
+           projetos prontos para o público.
+diff --git a/src/style.css b/src/style.css
+index 43bbd32..e233840 100644
+--- a/src/style.css
++++ b/src/style.css
+@@ -370,8 +370,7 @@ svg {
+   color: var(--text);
+   font-size: 0.84rem;
+   font-weight: 780;
+-  text-transform: uppercase;
+-  letter-spacing: 0.06em;
++  letter-spacing: -0.015em;
+ }
+ 
+ .resume-meta {
+@@ -380,10 +379,8 @@ svg {
+   flex-wrap: wrap;
+   gap: 9px;
+   color: var(--muted);
+-  font-size: 0.68rem;
++  font-size: 0.72rem;
+   font-weight: 700;
+-  text-transform: uppercase;
+-  letter-spacing: 0.05em;
+ }
+ 
+ .resume-block {
+@@ -394,20 +391,16 @@ svg {
+ 
+ .resume-block h3 {
+   margin: 0;
+-  color: #7f875e;
+-  font-size: 0.67rem;
++  color: var(--violet-soft);
++  font-size: 0.76rem;
+   font-weight: 780;
+-  text-transform: uppercase;
+-  letter-spacing: 0.08em;
+ }
+ 
+ .resume-block p,
+ .resume-block li {
+-  color: var(--text);
+-  font-size: 0.76rem;
++  color: var(--copy);
++  font-size: 0.82rem;
+   line-height: 1.65;
+-  text-transform: uppercase;
+-  letter-spacing: 0.03em;
+ }
+ 
+ .resume-block p {
+@@ -422,15 +415,15 @@ svg {
+ 
+ .resume-block li {
+   position: relative;
+-  padding-left: 12px;
++  padding-left: 16px;
+ }
+ 
+ .resume-block li::before {
+   position: absolute;
+   top: 0;
+   left: 0;
+-  color: #e39b57;
+-  content: ">";
++  color: var(--violet-soft);
++  content: "›";
+ }
+ 
+ .resume-entry + .resume-entry {
+@@ -448,27 +441,21 @@ svg {
+ 
+ .resume-entry-head strong {
+   color: var(--text);
+-  font-size: 0.78rem;
++  font-size: 0.86rem;
+   line-height: 1.45;
+-  text-transform: uppercase;
+-  letter-spacing: 0.035em;
+ }
+ 
+ .resume-entry-head span {
+   color: var(--muted);
+-  font-size: 0.66rem;
++  font-size: 0.68rem;
+   font-weight: 700;
+-  text-transform: uppercase;
+-  letter-spacing: 0.06em;
+ }
+ 
+ .resume-entry-company {
+   margin-top: 6px;
+   color: var(--muted);
+-  font-size: 0.67rem;
++  font-size: 0.74rem;
+   font-weight: 700;
+-  text-transform: uppercase;
+-  letter-spacing: 0.05em;
+ }
+ 
+ .resume-single-line {
+@@ -490,12 +477,10 @@ svg {
+   display: inline-flex;
+   align-items: center;
+   border: 1px solid var(--line);
+-  border-radius: 2px;
+-  color: var(--text);
+-  font-size: 0.67rem;
+-  font-weight: 760;
+-  text-transform: uppercase;
+-  letter-spacing: 0.04em;
++  border-radius: 999px;
++  color: var(--muted);
++  font-size: 0.72rem;
++  font-weight: 700;
+ }
+ 
+ .resume-skill-tags li::before {
+@@ -981,6 +966,103 @@ footer p {
+   color: #fff;
+ }
+ 
++.scroll-progress {
++  position: fixed;
++  top: 0;
++  left: 0;
++  z-index: 30;
++  width: 100%;
++  height: 3px;
++  background: transparent;
++  pointer-events: none;
++}
++
++.scroll-progress-bar {
++  width: 0%;
++  height: 100%;
++  background: var(--violet-soft);
++  transition: width 120ms linear;
++}
++
++.role-rotator {
++  position: relative;
++  display: inline-block;
++  min-height: 1.3em;
++  vertical-align: top;
++}
++
++.role-rotator span {
++  position: absolute;
++  top: 0;
++  left: 50%;
++  transform: translateX(-50%);
++  white-space: nowrap;
++  opacity: 0;
++  animation: role-cycle 9s var(--ease-out) infinite;
++}
++
++.role-rotator span:nth-child(2) {
++  animation-delay: 3s;
++}
++
++.role-rotator span:nth-child(3) {
++  animation-delay: 6s;
++}
++
++@keyframes role-cycle {
++  0%,
++  2% {
++    opacity: 0;
++  }
++  8%,
++  27% {
++    opacity: 1;
++  }
++  33%,
++  100% {
++    opacity: 0;
++  }
++}
++
++body.easter-egg-active .mini-brand img,
++body.easter-egg-active .profile-avatar img {
++  animation: easter-egg-spin 1.4s var(--ease-out);
++}
++
++@keyframes easter-egg-spin {
++  0% {
++    transform: rotate(0deg) scale(1);
++  }
++  45% {
++    transform: rotate(360deg) scale(1.14);
++  }
++  100% {
++    transform: rotate(360deg) scale(1);
++  }
++}
++
++@media (prefers-reduced-motion: reduce) {
++  .role-rotator span {
++    position: static;
++    display: block;
++    animation: none;
++    opacity: 1;
++  }
++
++  .role-rotator span:nth-child(n + 2) {
++    display: none;
++  }
++
++  .scroll-progress-bar {
++    transition: none;
++  }
++
++  body.easter-egg-active .mini-brand img,
++  body.easter-egg-active .profile-avatar img {
++    animation: none;
++  }
++}
++
+ @media (max-width: 560px) {
+   :root {
+     --container: calc(100% - 24px);

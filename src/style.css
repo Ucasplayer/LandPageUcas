@@ -370,8 +370,7 @@ svg {
   color: var(--text);
   font-size: 0.84rem;
   font-weight: 780;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: -0.015em;
 }
 
 .resume-meta {
@@ -380,10 +379,8 @@ svg {
   flex-wrap: wrap;
   gap: 9px;
   color: var(--muted);
-  font-size: 0.68rem;
+  font-size: 0.72rem;
   font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
 }
 
 .resume-block {
@@ -394,20 +391,16 @@ svg {
 
 .resume-block h3 {
   margin: 0;
-  color: #7f875e;
-  font-size: 0.67rem;
+  color: var(--violet-soft);
+  font-size: 0.76rem;
   font-weight: 780;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
 }
 
 .resume-block p,
 .resume-block li {
-  color: var(--text);
-  font-size: 0.76rem;
+  color: var(--copy);
+  font-size: 0.82rem;
   line-height: 1.65;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
 }
 
 .resume-block p {
@@ -422,15 +415,15 @@ svg {
 
 .resume-block li {
   position: relative;
-  padding-left: 12px;
+  padding-left: 16px;
 }
 
 .resume-block li::before {
   position: absolute;
   top: 0;
   left: 0;
-  color: #e39b57;
-  content: ">";
+  color: var(--violet-soft);
+  content: "›";
 }
 
 .resume-entry + .resume-entry {
@@ -448,27 +441,21 @@ svg {
 
 .resume-entry-head strong {
   color: var(--text);
-  font-size: 0.78rem;
+  font-size: 0.86rem;
   line-height: 1.45;
-  text-transform: uppercase;
-  letter-spacing: 0.035em;
 }
 
 .resume-entry-head span {
   color: var(--muted);
-  font-size: 0.66rem;
+  font-size: 0.68rem;
   font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
 }
 
 .resume-entry-company {
   margin-top: 6px;
   color: var(--muted);
-  font-size: 0.67rem;
+  font-size: 0.74rem;
   font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
 }
 
 .resume-single-line {
@@ -490,12 +477,10 @@ svg {
   display: inline-flex;
   align-items: center;
   border: 1px solid var(--line);
-  border-radius: 2px;
-  color: var(--text);
-  font-size: 0.67rem;
-  font-weight: 760;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
+  border-radius: 999px;
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 700;
 }
 
 .resume-skill-tags li::before {
@@ -979,6 +964,103 @@ footer p {
 .about-links a:last-child {
   background: var(--violet);
   color: #fff;
+}
+
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 30;
+  width: 100%;
+  height: 3px;
+  background: transparent;
+  pointer-events: none;
+}
+
+.scroll-progress-bar {
+  width: 0%;
+  height: 100%;
+  background: var(--violet-soft);
+  transition: width 120ms linear;
+}
+
+.role-rotator {
+  position: relative;
+  display: inline-block;
+  min-height: 1.3em;
+  vertical-align: top;
+}
+
+.role-rotator span {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  opacity: 0;
+  animation: role-cycle 9s var(--ease-out) infinite;
+}
+
+.role-rotator span:nth-child(2) {
+  animation-delay: 3s;
+}
+
+.role-rotator span:nth-child(3) {
+  animation-delay: 6s;
+}
+
+@keyframes role-cycle {
+  0%,
+  2% {
+    opacity: 0;
+  }
+  8%,
+  27% {
+    opacity: 1;
+  }
+  33%,
+  100% {
+    opacity: 0;
+  }
+}
+
+body.easter-egg-active .mini-brand img,
+body.easter-egg-active .profile-avatar img {
+  animation: easter-egg-spin 1.4s var(--ease-out);
+}
+
+@keyframes easter-egg-spin {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  45% {
+    transform: rotate(360deg) scale(1.14);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .role-rotator span {
+    position: static;
+    display: block;
+    animation: none;
+    opacity: 1;
+  }
+
+  .role-rotator span:nth-child(n + 2) {
+    display: none;
+  }
+
+  .scroll-progress-bar {
+    transition: none;
+  }
+
+  body.easter-egg-active .mini-brand img,
+  body.easter-egg-active .profile-avatar img {
+    animation: none;
+  }
 }
 
 @media (max-width: 560px) {

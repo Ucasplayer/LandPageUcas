@@ -1,3 +1,5 @@
+import SiteEffects from "./site-effects";
+
 export const metadata = {
   title: "Ucas — Editor de vídeo & Developer",
   description:
@@ -24,7 +26,13 @@ export default function RootLayout({ children }) {
       <head>
         <link rel="stylesheet" href="/style.css" />
       </head>
-      <body>{children}</body>
+      <body>
+        <div className="scroll-progress" aria-hidden="true">
+          <div className="scroll-progress-bar" data-scroll-progress />
+        </div>
+        {children}
+        <SiteEffects />
+      </body>
     </html>
   );
 }
