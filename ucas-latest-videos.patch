@@ -1,0 +1,301 @@
+diff --git a/app/api/latest-videos/route.js b/app/api/latest-videos/route.js
+new file mode 100644
+index 0000000..b24ea13
+--- /dev/null
++++ b/app/api/latest-videos/route.js
+@@ -0,0 +1,118 @@
++// Busca o último vídeo de cada canal do Ucas via RSS do YouTube.
++// Roda no servidor (Route Handler), então não esbarra em CORS e não
++// precisa de chave de API do YouTube Data API.
++
++const CHANNELS = [
++  { handle: "Ucasix", label: "Ucasix" },
++  { handle: "Ucashardware", label: "Ucas Hardware" },
++  { handle: "UcasRivals", label: "Ucas Rivals" },
++  { handle: "oreonSMP", label: "Oreon SMP" },
++];
++
++const ONE_HOUR = 60 * 60 * 1000;
++
++// Cache em memória do processo. Sobrevive entre requisições enquanto a
++// instância do servidor ficar de pé; em ambientes serverless "frios" ele
++// simplesmente é reconstruído — não é crítico, só evita bater no YouTube
++// a cada visita.
++const cache = globalThis.__ucasYoutubeCache ?? (globalThis.__ucasYoutubeCache = new Map());
++
++const FETCH_HEADERS = {
++  "User-Agent":
++    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36",
++};
++
++function decodeEntities(text) {
++  return text
++    .replace(/&amp;/g, "&")
++    .replace(/&#39;/g, "'")
++    .replace(/&quot;/g, '"')
++    .replace(/&lt;/g, "<")
++    .replace(/&gt;/g, ">");
++}
++
++function parseFirstEntry(xml) {
++  const entryMatch = xml.match(/<entry>([\s\S]*?)<\/entry>/);
++  if (!entryMatch) return null;
++
++  const block = entryMatch[1];
++  const pick = (regex) => (block.match(regex)?.[1] ?? "").trim();
++
++  const videoId = pick(/<yt:videoId>([^<]+)<\/yt:videoId>/);
++  if (!videoId) return null;
++
++  return {
++    videoId,
++    title: decodeEntities(pick(/<title>([^<]*)<\/title>/)),
++    publishedAt: pick(/<published>([^<]+)<\/published>/),
++    thumbnail: `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`,
++    url: `https://www.youtube.com/watch?v=${videoId}`,
++  };
++}
++
++// Resolve @handle -> UCxxxxxxxxxxxxxxxxxxxxxx (o feed RSS só aceita channel_id).
++// Se preferir evitar esse passo em produção, troque por um mapa fixo:
++// const CHANNEL_IDS = { Ucasix: "UC...", Ucashardware: "UC...", ... }
++async function resolveChannelId(handle) {
++  const cacheKey = `id:${handle}`;
++  const cached = cache.get(cacheKey);
++  if (cached) return cached;
++
++  const page = await fetch(`https://www.youtube.com/@${handle}`, {
++    headers: FETCH_HEADERS,
++  });
++  if (!page.ok) {
++    throw new Error(`Não foi possível abrir @${handle} (status ${page.status})`);
++  }
++
++  const html = await page.text();
++  const channelId = html.match(/"channelId":"(UC[\w-]{22})"/)?.[1];
++  if (!channelId) {
++    throw new Error(`channelId não encontrado na página de @${handle}`);
++  }
++
++  cache.set(cacheKey, channelId);
++  return channelId;
++}
++
++async function loadLatestVideo({ handle, label }) {
++  const cacheKey = `video:${handle}`;
++  const cached = cache.get(cacheKey);
++  if (cached && Date.now() - cached.fetchedAt < ONE_HOUR) {
++    return cached.data;
++  }
++
++  const channelId = await resolveChannelId(handle);
++  const feed = await fetch(
++    `https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`,
++    { headers: FETCH_HEADERS },
++  );
++  if (!feed.ok) {
++    throw new Error(`Feed de @${handle} respondeu ${feed.status}`);
++  }
++
++  const xml = await feed.text();
++  const entry = parseFirstEntry(xml);
++  if (!entry) {
++    throw new Error(`Nenhum vídeo encontrado no feed de @${handle}`);
++  }
++
++  const data = { handle, label, ...entry };
++  cache.set(cacheKey, { data, fetchedAt: Date.now() });
++  return data;
++}
++
++export async function GET() {
++  const results = await Promise.allSettled(CHANNELS.map(loadLatestVideo));
++
++  const videos = results.map((result, index) =>
++    result.status === "fulfilled"
++      ? result.value
++      : { handle: CHANNELS[index].handle, error: true },
++  );
++
++  return Response.json(
++    { videos },
++    { headers: { "Cache-Control": "public, max-age=0, s-maxage=3600" } },
++  );
++}
+diff --git a/public/style.css b/public/style.css
+index e233840..7c2263d 100644
+--- a/public/style.css
++++ b/public/style.css
+@@ -665,6 +665,16 @@ svg {
+   stroke: none;
+ }
+ 
++.yt-latest {
++  display: block;
++  margin-top: 2px;
++  color: var(--violet-soft);
++  font-size: 0.66rem;
++  white-space: nowrap;
++  overflow: hidden;
++  text-overflow: ellipsis;
++}
++
+ .project-list,
+ .contact-list {
+   display: grid;
+diff --git a/src/home.html b/src/home.html
+index 708a8a0..1911bae 100644
+--- a/src/home.html
++++ b/src/home.html
+@@ -164,9 +164,10 @@
+         </a>
+ 
+         <h3 class="channel-heading">Meus canais</h3>
+-        <div class="channel-list">
++        <div class="channel-list" data-channels aria-busy="true">
+           <a
+             class="channel-row"
++            data-channel="Ucasix"
+             href="https://www.youtube.com/@Ucasix"
+             target="_blank"
+             rel="noreferrer"
+@@ -180,6 +181,7 @@
+             <span class="row-copy">
+               <strong>Ucasix</strong>
+               <span>Grand Theft Auto</span>
++              <small class="yt-latest" data-yt-video hidden></small>
+             </span>
+             <svg class="row-arrow" aria-hidden="true" viewBox="0 0 24 24">
+               <path d="M5 19 19 5M9 5h10v10" />
+@@ -188,6 +190,7 @@
+ 
+           <a
+             class="channel-row"
++            data-channel="Ucashardware"
+             href="https://www.youtube.com/@Ucashardware"
+             target="_blank"
+             rel="noreferrer"
+@@ -201,6 +204,7 @@
+             <span class="row-copy">
+               <strong>Ucas Hardware</strong>
+               <span>Hardware e tecnologia</span>
++              <small class="yt-latest" data-yt-video hidden></small>
+             </span>
+             <svg class="row-arrow" aria-hidden="true" viewBox="0 0 24 24">
+               <path d="M5 19 19 5M9 5h10v10" />
+@@ -209,6 +213,7 @@
+ 
+           <a
+             class="channel-row"
++            data-channel="UcasRivals"
+             href="https://www.youtube.com/@UcasRivals"
+             target="_blank"
+             rel="noreferrer"
+@@ -222,6 +227,7 @@
+             <span class="row-copy">
+               <strong>Ucas Rivals</strong>
+               <span>Marvel Rivals</span>
++              <small class="yt-latest" data-yt-video hidden></small>
+             </span>
+             <svg class="row-arrow" aria-hidden="true" viewBox="0 0 24 24">
+               <path d="M5 19 19 5M9 5h10v10" />
+@@ -230,6 +236,7 @@
+ 
+           <a
+             class="channel-row"
++            data-channel="oreonSMP"
+             href="https://www.youtube.com/@oreonSMP"
+             target="_blank"
+             rel="noreferrer"
+@@ -243,6 +250,7 @@
+             <span class="row-copy">
+               <strong>Oreon SMP</strong>
+               <span>Projeto Oreon RPG</span>
++              <small class="yt-latest" data-yt-video hidden></small>
+             </span>
+             <svg class="row-arrow" aria-hidden="true" viewBox="0 0 24 24">
+               <path d="M5 19 19 5M9 5h10v10" />
+@@ -426,6 +434,7 @@
+     </main>
+ 
+     <p class="sr-only" data-copy-status aria-live="polite"></p>
++    <p class="sr-only" data-youtube-status aria-live="polite"></p>
+     <script type="module" src="/src/main.js"></script>
+   </body>
+ </html>
+diff --git a/src/main.js b/src/main.js
+index 1af78b4..f803ec8 100644
+--- a/src/main.js
++++ b/src/main.js
+@@ -103,3 +103,50 @@ Promise.allSettled(repoNames.map(loadRepository)).then((results) => {
+ 
+   projects?.setAttribute("aria-busy", "false");
+ });
++
++const channelList = document.querySelector("[data-channels]");
++const youtubeState = document.querySelector("[data-youtube-status]");
++
++const formatPublished = (date) => {
++  if (!date) return "";
++  return `Publicado ${new Intl.DateTimeFormat("pt-BR", {
++    day: "2-digit",
++    month: "short",
++  }).format(new Date(date))}`;
++};
++
++fetch("/api/latest-videos")
++  .then((response) => {
++    if (!response.ok) throw new Error(`API respondeu ${response.status}`);
++    return response.json();
++  })
++  .then(({ videos }) => {
++    let loadedCount = 0;
++
++    videos.forEach((video) => {
++      const row = document.querySelector(`[data-channel="${video.handle}"]`);
++      const slot = row?.querySelector("[data-yt-video]");
++      if (!slot || video.error) return;
++
++      loadedCount += 1;
++      slot.textContent = `▶ ${video.title}`;
++      slot.title = formatPublished(video.publishedAt);
++      slot.hidden = false;
++    });
++
++    if (youtubeState) {
++      youtubeState.textContent =
++        loadedCount > 0
++          ? `Últimos vídeos sincronizados com o YouTube (${loadedCount} de ${videos.length}).`
++          : "O YouTube não respondeu agora; os links dos canais continuam disponíveis.";
++    }
++  })
++  .catch(() => {
++    if (youtubeState) {
++      youtubeState.textContent =
++        "Não foi possível buscar os últimos vídeos agora; os links dos canais continuam disponíveis.";
++    }
++  })
++  .finally(() => {
++    channelList?.setAttribute("aria-busy", "false");
++  });
+diff --git a/src/style.css b/src/style.css
+index e233840..7c2263d 100644
+--- a/src/style.css
++++ b/src/style.css
+@@ -665,6 +665,16 @@ svg {
+   stroke: none;
+ }
+ 
++.yt-latest {
++  display: block;
++  margin-top: 2px;
++  color: var(--violet-soft);
++  font-size: 0.66rem;
++  white-space: nowrap;
++  overflow: hidden;
++  text-overflow: ellipsis;
++}
++
+ .project-list,
+ .contact-list {
+   display: grid;

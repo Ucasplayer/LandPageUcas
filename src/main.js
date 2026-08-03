@@ -103,3 +103,50 @@ Promise.allSettled(repoNames.map(loadRepository)).then((results) => {
 
   projects?.setAttribute("aria-busy", "false");
 });
+
+const channelList = document.querySelector("[data-channels]");
+const youtubeState = document.querySelector("[data-youtube-status]");
+
+const formatPublished = (date) => {
+  if (!date) return "";
+  return `Publicado ${new Intl.DateTimeFormat("pt-BR", {
+    day: "2-digit",
+    month: "short",
+  }).format(new Date(date))}`;
+};
+
+fetch("/api/latest-videos")
+  .then((response) => {
+    if (!response.ok) throw new Error(`API respondeu ${response.status}`);
+    return response.json();
+  })
+  .then(({ videos }) => {
+    let loadedCount = 0;
+
+    videos.forEach((video) => {
+      const row = document.querySelector(`[data-channel="${video.handle}"]`);
+      const slot = row?.querySelector("[data-yt-video]");
+      if (!slot || video.error) return;
+
+      loadedCount += 1;
+      slot.textContent = `▶ ${video.title}`;
+      slot.title = formatPublished(video.publishedAt);
+      slot.hidden = false;
+    });
+
+    if (youtubeState) {
+      youtubeState.textContent =
+        loadedCount > 0
+          ? `Últimos vídeos sincronizados com o YouTube (${loadedCount} de ${videos.length}).`
+          : "O YouTube não respondeu agora; os links dos canais continuam disponíveis.";
+    }
+  })
+  .catch(() => {
+    if (youtubeState) {
+      youtubeState.textContent =
+        "Não foi possível buscar os últimos vídeos agora; os links dos canais continuam disponíveis.";
+    }
+  })
+  .finally(() => {
+    channelList?.setAttribute("aria-busy", "false");
+  });

@@ -164,9 +164,10 @@
         </a>
 
         <h3 class="channel-heading">Meus canais</h3>
-        <div class="channel-list">
+        <div class="channel-list" data-channels aria-busy="true">
           <a
             class="channel-row"
+            data-channel="Ucasix"
             href="https://www.youtube.com/@Ucasix"
             target="_blank"
             rel="noreferrer"
@@ -180,6 +181,7 @@
             <span class="row-copy">
               <strong>Ucasix</strong>
               <span>Grand Theft Auto</span>
+              <small class="yt-latest" data-yt-video hidden></small>
             </span>
             <svg class="row-arrow" aria-hidden="true" viewBox="0 0 24 24">
               <path d="M5 19 19 5M9 5h10v10" />
@@ -188,6 +190,7 @@
 
           <a
             class="channel-row"
+            data-channel="Ucashardware"
             href="https://www.youtube.com/@Ucashardware"
             target="_blank"
             rel="noreferrer"
@@ -201,6 +204,7 @@
             <span class="row-copy">
               <strong>Ucas Hardware</strong>
               <span>Hardware e tecnologia</span>
+              <small class="yt-latest" data-yt-video hidden></small>
             </span>
             <svg class="row-arrow" aria-hidden="true" viewBox="0 0 24 24">
               <path d="M5 19 19 5M9 5h10v10" />
@@ -209,6 +213,7 @@
 
           <a
             class="channel-row"
+            data-channel="UcasRivals"
             href="https://www.youtube.com/@UcasRivals"
             target="_blank"
             rel="noreferrer"
@@ -222,6 +227,7 @@
             <span class="row-copy">
               <strong>Ucas Rivals</strong>
               <span>Marvel Rivals</span>
+              <small class="yt-latest" data-yt-video hidden></small>
             </span>
             <svg class="row-arrow" aria-hidden="true" viewBox="0 0 24 24">
               <path d="M5 19 19 5M9 5h10v10" />
@@ -230,6 +236,7 @@
 
           <a
             class="channel-row"
+            data-channel="oreonSMP"
             href="https://www.youtube.com/@oreonSMP"
             target="_blank"
             rel="noreferrer"
@@ -243,6 +250,7 @@
             <span class="row-copy">
               <strong>Oreon SMP</strong>
               <span>Projeto Oreon RPG</span>
+              <small class="yt-latest" data-yt-video hidden></small>
             </span>
             <svg class="row-arrow" aria-hidden="true" viewBox="0 0 24 24">
               <path d="M5 19 19 5M9 5h10v10" />
@@ -426,6 +434,7 @@
     </main>
 
     <p class="sr-only" data-copy-status aria-live="polite"></p>
+    <p class="sr-only" data-youtube-status aria-live="polite"></p>
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>

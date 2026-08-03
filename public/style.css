@@ -665,6 +665,16 @@ svg {
   stroke: none;
 }
 
+.yt-latest {
+  display: block;
+  margin-top: 2px;
+  color: var(--violet-soft);
+  font-size: 0.66rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .project-list,
 .contact-list {
   display: grid;

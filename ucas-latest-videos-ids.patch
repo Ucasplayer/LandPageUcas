@@ -1,0 +1,36 @@
+diff --git a/app/api/latest-videos/route.js b/app/api/latest-videos/route.js
+index b24ea13..088eb1d 100644
+--- a/app/api/latest-videos/route.js
++++ b/app/api/latest-videos/route.js
+@@ -3,10 +3,10 @@
+ // precisa de chave de API do YouTube Data API.
+ 
+ const CHANNELS = [
+-  { handle: "Ucasix", label: "Ucasix" },
+-  { handle: "Ucashardware", label: "Ucas Hardware" },
+-  { handle: "UcasRivals", label: "Ucas Rivals" },
+-  { handle: "oreonSMP", label: "Oreon SMP" },
++  { handle: "Ucasix", label: "Ucasix", channelId: "UC1uAkM6ozVKh5REwxMA-KEw" },
++  { handle: "Ucashardware", label: "Ucas Hardware", channelId: "UCwF_Icgb7HO1MGHXFC4Ha1Q" },
++  { handle: "UcasRivals", label: "Ucas Rivals", channelId: "UCYxqXbHk9Fi2OgJ_e1vNBkw" },
++  { handle: "oreonSMP", label: "Oreon SMP", channelId: "UCcLBeEXFVRir8ISgnog95hA" },
+ ];
+ 
+ const ONE_HOUR = 60 * 60 * 1000;
+@@ -75,14 +75,14 @@ async function resolveChannelId(handle) {
+   return channelId;
+ }
+ 
+-async function loadLatestVideo({ handle, label }) {
++async function loadLatestVideo({ handle, label, channelId: knownChannelId }) {
+   const cacheKey = `video:${handle}`;
+   const cached = cache.get(cacheKey);
+   if (cached && Date.now() - cached.fetchedAt < ONE_HOUR) {
+     return cached.data;
+   }
+ 
+-  const channelId = await resolveChannelId(handle);
++  const channelId = knownChannelId ?? (await resolveChannelId(handle));
+   const feed = await fetch(
+     `https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`,
+     { headers: FETCH_HEADERS },
