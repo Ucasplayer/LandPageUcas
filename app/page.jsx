@@ -1,5 +1,8 @@
-import source from "../src/home.html?raw";
+import { readFileSync } from "node:fs";
+import path from "node:path";
 import ClientInit from "./client-init";
+
+const source = readFileSync(path.join(process.cwd(), "src", "home.html"), "utf8");
 
 const bodyMarkup =
   source
