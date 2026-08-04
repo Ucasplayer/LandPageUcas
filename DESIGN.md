@@ -62,9 +62,11 @@ Os canais pessoais formam uma lista compacta em duas colunas no desktop e uma co
 
 ### Projetos
 
-Xenthor Launcher, OreonLauncher e XenthorFiles aparecem como linhas de repositório. Logo, nome, descrição, linguagem e atualização formam uma leitura horizontal; no mobile, os metadados quebram sem alterar a ordem.
+A seção reúne quatro linhas com a mesma leitura horizontal: logo, nome, descrição e metadados. No mobile, os metadados quebram sem alterar a ordem.
 
-A linha do Xenthor Launcher é a única destacada: recebe contorno, um rótulo violeta "Ver o projeto" e uma seta de navegação interna em vez da seta de link externo, porque leva para uma página do próprio site. Suas informações técnicas são fixas, já que o repositório é privado e a API do GitHub não responde por ele.
+Duas linhas são destacadas — Xenthor Launcher e Kryptós SMP. Elas recebem contorno, um rótulo violeta "Ver o projeto" e uma seta de navegação interna em vez da seta de link externo, porque levam para páginas do próprio site. Seus metadados são fixos: o Xenthor Launcher tem repositório privado e o Kryptós não vive no GitHub, então a API não responde por nenhum dos dois.
+
+OreonLauncher e XenthorFiles continuam como linhas de repositório público, com linguagem e data de atualização vindas da API do GitHub.
 
 ### Contatos
 
@@ -74,11 +76,13 @@ Discord é a única linha preenchida com roxo. E-mail, X e Instagram usam a supe
 
 A rota `/sobre` herda a mesma coluna e transforma a biografia em leitura: retrato e função, quatro parágrafos, uma lista de interesses e uma trajetória vertical. Os marcos usam idade e sequência relativa quando não há ano confirmado.
 
-### Página de projeto
+### Páginas de projeto
 
-A rota `/projetos/xenthor-launcher` é o primeiro estudo de caso e define o padrão para os próximos. Mantém a coluna de 620px e organiza a leitura em cinco blocos: capa com marca, nome, uma frase do que o produto faz e etiquetas de stack; capturas reais do launcher em largura total, com legenda e link para a imagem original; recursos em grade de dois para um; o caminho do jogador reaproveitando a trajetória vertical; e uma ficha técnica em pares termo/valor que empilham no mobile.
+As rotas `/projetos/xenthor-launcher` e `/projetos/kryptos-smp` seguem o mesmo padrão. Mantêm a coluna de 620px e organizam a leitura em cinco blocos: capa com marca, nome, uma frase do que o produto faz e etiquetas de stack; capturas reais em largura total, com legenda e link para a imagem original; recursos em grade de dois para um; um fluxo em quatro passos reaproveitando a trajetória vertical; e uma ficha técnica em pares termo/valor que empilham no mobile.
 
-O fecho é um bloco de contato com a mesma dupla de botões da página Sobre. Nenhum número, preço ou prazo aparece; só o que está confirmado no próprio launcher.
+Capturas mais altas que largas — uma tela de login, por exemplo — usam a variante `shot-narrow`, limitada a 340px e centralizada, para não dominar a coluna. Quando o projeto está publicado, a capa ganha um link discreto para o site no ar.
+
+O fecho é sempre um bloco de contato com a mesma dupla de botões da página Sobre, ligando o projeto mostrado ao serviço oferecido. Nenhum número, preço ou prazo aparece; só o que está confirmado no código do próprio projeto.
 
 ## Responsividade e acesso
 

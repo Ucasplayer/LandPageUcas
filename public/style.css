@@ -732,6 +732,12 @@ svg {
   height: 92%;
 }
 
+.project-logo-kryptos {
+  width: 76%;
+  height: 76%;
+  border-radius: 7px;
+}
+
 .project-mark-code {
   color: var(--violet-soft);
   font-size: 1.1rem;
@@ -1020,6 +1026,12 @@ footer p {
   object-fit: contain;
 }
 
+.case-mark-contain img {
+  width: 74%;
+  height: 74%;
+  border-radius: 8px;
+}
+
 .case-kicker {
   margin: 0 0 10px;
   color: var(--violet-soft);
@@ -1067,6 +1079,30 @@ footer p {
   font-weight: 700;
 }
 
+.case-live {
+  margin: 20px 0 0;
+}
+
+.case-live a {
+  min-height: 44px;
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  color: var(--violet-soft);
+  font-size: 0.75rem;
+  font-weight: 750;
+  text-decoration: none;
+}
+
+.case-live a:hover {
+  text-decoration: underline;
+}
+
+.case-live svg {
+  width: 15px;
+  height: 15px;
+}
+
 .case-block {
   margin-top: 56px;
 }
@@ -1082,8 +1118,29 @@ footer p {
   gap: 26px;
 }
 
+/* Capturas de painel ficam ilegíveis na coluna de 620px. Em telas largas a
+   galeria — e só ela — passa a ocupar até 860px, sem sair de uma coluna. */
+@media (min-width: 900px) {
+  .shot-list {
+    width: 860px;
+    margin-left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
 .shot {
   margin: 0;
+}
+
+/* Capturas mais estreitas que largas — como uma tela de login — ficariam altas
+   demais em largura total, então entram como detalhe centralizado. */
+.shot-narrow {
+  max-width: 340px;
+  margin-inline: auto;
+}
+
+.shot-narrow figcaption {
+  text-align: center;
 }
 
 .shot > a {
