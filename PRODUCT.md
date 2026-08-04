@@ -37,6 +37,7 @@ Os visitantes avaliam o trabalho por projetos públicos no GitHub e iniciam cont
 - Canais confirmados: `https://www.youtube.com/@Ucasix`, `https://www.youtube.com/@Ucashardware`, `https://www.youtube.com/@UcasRivals` e `https://www.youtube.com/@oreonSMP`.
 - Lucas é formado em Música e toca guitarra, contrabaixo e violão.
 - As imagens `public/xenthor-logo.png` e `public/oreon-logo.png` são as marcas fornecidas para Xenthor e Oreon. A interface serve `public/xenthor-logo.webp`, derivado otimizado do PNG original; `public/loud-comments.jpg` vem do perfil público oficial da LOUD Comments no X.
+- As capturas `public/xenthor-shot-login.webp`, `public/xenthor-shot-offline.webp` e `public/xenthor-shot-welcome.webp` são telas reais do Xenthor Launcher fornecidas por Ucas.
 - Idioma principal: português do Brasil.
 
 ## Brand Commitments
@@ -50,6 +51,9 @@ Os visitantes avaliam o trabalho por projetos públicos no GitHub e iniciam cont
 
 - Perfil público: https://github.com/Ucasplayer
 - Projetos autorizados para destaque: XenthorLauncher, OreonLauncher e XenthorFiles.
+- O repositório `XenthorLauncher` é privado; o projeto é apresentado na página `/projetos/xenthor-launcher` em vez de um link para o GitHub. `OreonLauncher` e `XenthorFiles` são públicos e continuam sincronizando dados pela API.
+- Fatos confirmados do Xenthor Launcher, extraídos do próprio projeto: aplicativo Electron para Windows, macOS e Linux; Minecraft 1.21.5 com Fabric Loader; Java 21 com 4 GB de RAM recomendados e 2 GB mínimos; atualização de mods e bibliotecas por manifesto remoto com verificação de integridade; login com conta Microsoft e modo offline; notícias e status do servidor na tela inicial; Discord Rich Presence; atualização automática do próprio launcher; interface em português do Brasil e inglês.
+- Endereço do servidor, identificadores de Discord e URLs de infraestrutura do launcher não devem aparecer no site.
 - Não há depoimentos, lista de clientes, preços, métricas comerciais ou imagens próprias fornecidas; esses elementos não devem ser fabricados.
 
 ## Product Principles

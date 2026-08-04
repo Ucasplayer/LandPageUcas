@@ -62,7 +62,9 @@ Os canais pessoais formam uma lista compacta em duas colunas no desktop e uma co
 
 ### Projetos
 
-XenthorLauncher, OreonLauncher e XenthorFiles aparecem como linhas de repositório. Logo, nome, descrição, linguagem e atualização formam uma leitura horizontal; no mobile, os metadados quebram sem alterar a ordem.
+Xenthor Launcher, OreonLauncher e XenthorFiles aparecem como linhas de repositório. Logo, nome, descrição, linguagem e atualização formam uma leitura horizontal; no mobile, os metadados quebram sem alterar a ordem.
+
+A linha do Xenthor Launcher é a única destacada: recebe contorno, um rótulo violeta "Ver o projeto" e uma seta de navegação interna em vez da seta de link externo, porque leva para uma página do próprio site. Suas informações técnicas são fixas, já que o repositório é privado e a API do GitHub não responde por ele.
 
 ### Contatos
 
@@ -71,6 +73,12 @@ Discord é a única linha preenchida com roxo. E-mail, X e Instagram usam a supe
 ### Página Sobre
 
 A rota `/sobre` herda a mesma coluna e transforma a biografia em leitura: retrato e função, quatro parágrafos, uma lista de interesses e uma trajetória vertical. Os marcos usam idade e sequência relativa quando não há ano confirmado.
+
+### Página de projeto
+
+A rota `/projetos/xenthor-launcher` é o primeiro estudo de caso e define o padrão para os próximos. Mantém a coluna de 620px e organiza a leitura em cinco blocos: capa com marca, nome, uma frase do que o produto faz e etiquetas de stack; capturas reais do launcher em largura total, com legenda e link para a imagem original; recursos em grade de dois para um; o caminho do jogador reaproveitando a trajetória vertical; e uma ficha técnica em pares termo/valor que empilham no mobile.
+
+O fecho é um bloco de contato com a mesma dupla de botões da página Sobre. Nenhum número, preço ou prazo aparece; só o que está confirmado no próprio launcher.
 
 ## Responsividade e acesso
 

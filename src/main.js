@@ -50,7 +50,9 @@ document.querySelectorAll("[data-copy-discord]").forEach((button) => {
   button.addEventListener("click", () => copyDiscord(button));
 });
 
-const repoNames = ["XenthorLauncher", "OreonLauncher", "XenthorFiles"];
+// O Xenthor Launcher tem página própria em /projetos/xenthor-launcher e repositório
+// privado, então só os repositórios públicos são consultados na API do GitHub.
+const repoNames = ["OreonLauncher", "XenthorFiles"];
 const githubState = document.querySelector("[data-github-state]");
 const projects = document.querySelector("[data-projects]");
 
