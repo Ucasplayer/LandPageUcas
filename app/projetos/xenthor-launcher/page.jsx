@@ -118,7 +118,7 @@ export default function XenthorLauncherPage() {
 
         <article className="case-article">
           <header className="case-hero">
-            <div className="case-mark">
+            <div className="case-mark" data-mark="xenthor">
               <img
                 src="/xenthor-logo.webp"
                 alt="Marca do Xenthor Launcher"

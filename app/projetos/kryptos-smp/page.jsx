@@ -135,7 +135,7 @@ export default function KryptosPage() {
 
         <article className="case-article">
           <header className="case-hero">
-            <div className="case-mark case-mark-contain">
+            <div className="case-mark case-mark-contain" data-mark="kryptos">
               <img
                 src="/kryptos-logo.webp"
                 alt="Marca do Kryptós SMP"

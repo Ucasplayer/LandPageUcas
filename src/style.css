@@ -1293,10 +1293,12 @@ footer p {
 }
 
 .scroll-progress-bar {
-  width: 0%;
+  width: 100%;
   height: 100%;
   background: var(--violet-soft);
-  transition: width 120ms linear;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 120ms linear;
 }
 
 .role-rotator {
@@ -1313,7 +1315,7 @@ footer p {
   transform: translateX(-50%);
   white-space: nowrap;
   opacity: 0;
-  animation: role-cycle 9s var(--ease-out) infinite;
+  animation: role-cycle 9s linear infinite;
 }
 
 .role-rotator span:nth-child(2) {
@@ -1324,16 +1326,18 @@ footer p {
   animation-delay: 6s;
 }
 
+/* As três funções trocam por corte, não por dissolvência: 1% de 9s é 90ms,
+   curto o bastante para ler como um corte e longo o bastante para não piscar. */
 @keyframes role-cycle {
   0%,
-  2% {
+  1% {
     opacity: 0;
   }
-  8%,
-  27% {
+  2%,
+  31% {
     opacity: 1;
   }
-  33%,
+  32%,
   100% {
     opacity: 0;
   }
@@ -1583,5 +1587,212 @@ body.easter-egg-active .profile-avatar img {
   *::after {
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+/* ==========================================================================
+   Movimento — Sala de corte
+   --------------------------------------------------------------------------
+   Tese: trocar de página é um corte de edição. A saída é seca, a entrada é
+   confiante, e a marca do projeto viaja da linha da lista para a capa da
+   página — esse morph é o único momento autoral da superfície.
+
+   Tudo aqui é aprimoramento progressivo. A navegação é entre documentos
+   (links comuns, sem roteador cliente), então basta declarar a transição:
+   onde o navegador não suporta, a navegação continua a de hoje.
+   ========================================================================== */
+
+@view-transition {
+  navigation: auto;
+}
+
+/* Elementos que atravessam a navegação. Ficam fora do snapshot da raiz, então
+   não acompanham o deslize da página — o que só se paga quando eles realmente
+   têm continuidade a preservar.
+
+   Duas coisas de propósito NÃO entram aqui. A topbar, porque com a home rolada
+   ela já saiu da tela e parear as duas a faria descer voando em vez de segurar,
+   justamente no caminho mais comum: rolar até os projetos e clicar. E o avatar,
+   porque entre a home e a Sobre ele anda 4px e encolhe 8px — um morph que
+   ninguém vê, cobrando o preço de ficar parado enquanto a página desliza. */
+.scroll-progress {
+  view-transition-name: playhead;
+}
+
+/* O momento autoral: o mesmo par de marcas existe na lista da home e na capa
+   da página do projeto, então o azulejo cresce até virar a capa. */
+[data-mark="xenthor"] {
+  view-transition-name: mark-xenthor;
+}
+
+[data-mark="kryptos"] {
+  view-transition-name: mark-kryptos;
+}
+
+::view-transition-group(mark-xenthor),
+::view-transition-group(mark-kryptos) {
+  animation-duration: 520ms;
+  animation-timing-function: var(--ease-out);
+}
+
+/* A caixa viaja por 520ms, mas as duas fotos da marca trocam em 150ms: como é
+   a mesma arte nas duas pontas, um cruzamento longo viraria fantasma em vez de
+   um objeto só se movendo. Também resolve a marca sem par — ela sai antes de
+   denunciar que não acompanha o deslize da página. */
+::view-transition-old(mark-xenthor),
+::view-transition-new(mark-xenthor),
+::view-transition-old(mark-kryptos),
+::view-transition-new(mark-kryptos) {
+  animation-duration: 150ms;
+}
+
+/* O playhead volta para o zero sem dissolver por cima da página nova. */
+::view-transition-old(playhead) {
+  animation-duration: 100ms;
+}
+
+/* O corte: sai rápido, entra com calma. A assimetria é o que separa um corte
+   de uma dissolvência. */
+::view-transition-old(root) {
+  animation: cut-out 180ms linear both;
+}
+
+::view-transition-new(root) {
+  animation: cut-in 400ms var(--ease-out) both;
+}
+
+:root:active-view-transition-type(forward)::view-transition-old(root) {
+  animation: cut-out-forward 180ms linear both;
+}
+
+:root:active-view-transition-type(forward)::view-transition-new(root) {
+  animation: cut-in-forward 400ms var(--ease-out) both;
+}
+
+:root:active-view-transition-type(back)::view-transition-old(root) {
+  animation: cut-out-back 180ms linear both;
+}
+
+:root:active-view-transition-type(back)::view-transition-new(root) {
+  animation: cut-in-back 400ms var(--ease-out) both;
+}
+
+@keyframes cut-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes cut-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes cut-out-forward {
+  to {
+    opacity: 0;
+    transform: translateX(-2%);
+  }
+}
+
+@keyframes cut-in-forward {
+  from {
+    opacity: 0;
+    transform: translateX(4%);
+  }
+}
+
+@keyframes cut-out-back {
+  to {
+    opacity: 0;
+    transform: translateX(2%);
+  }
+}
+
+@keyframes cut-in-back {
+  from {
+    opacity: 0;
+    transform: translateX(-4%);
+  }
+}
+
+/* A ficha de stack resolve item a item quando a página do projeto entra —
+   uma lista aparecendo como lista, com atraso total limitado. */
+.case-tags li {
+  animation: tag-resolve 300ms var(--ease-out) both;
+}
+
+.case-tags li:nth-child(1) {
+  animation-delay: 200ms;
+}
+
+.case-tags li:nth-child(2) {
+  animation-delay: 245ms;
+}
+
+.case-tags li:nth-child(3) {
+  animation-delay: 290ms;
+}
+
+.case-tags li:nth-child(n + 4) {
+  animation-delay: 335ms;
+}
+
+@keyframes tag-resolve {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+}
+
+/* Feedback: a seta diz para onde o link leva. A externa viaja para fora da
+   página; a interna avança na direção da leitura. */
+.row-arrow,
+.button-arrow {
+  transition: transform 180ms var(--ease-out);
+}
+
+.editorial-row:hover .row-arrow,
+.editorial-row:focus-visible .row-arrow,
+.channel-row:hover .row-arrow,
+.channel-row:focus-visible .row-arrow,
+.contact-row:hover .row-arrow,
+.contact-row:focus-visible .row-arrow {
+  transform: translate(3px, -3px);
+}
+
+.project-row:hover .row-arrow,
+.project-row:focus-visible .row-arrow {
+  transform: translateX(4px);
+}
+
+.button-primary:hover .button-arrow,
+.button-primary:focus-visible .button-arrow {
+  transform: translateX(4px);
+}
+
+/* A cópia do Discord confirma com um aceno curto no marcador. */
+.contact-row-primary.is-copied .contact-icon {
+  animation: copy-confirm 320ms var(--ease-out);
+}
+
+@keyframes copy-confirm {
+  40% {
+    transform: scale(1.09);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation-duration: 1ms !important;
+    animation-delay: 0ms !important;
+  }
+
+  .case-tags li,
+  .contact-row-primary.is-copied .contact-icon {
+    animation: none;
   }
 }

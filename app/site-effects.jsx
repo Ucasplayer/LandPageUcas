@@ -19,12 +19,14 @@ export default function SiteEffects() {
   useEffect(() => {
     const bar = document.querySelector("[data-scroll-progress]");
 
+    // Escala em vez de largura: a barra roda no compositor e não força layout a
+    // cada evento de scroll.
     const updateProgress = () => {
       if (!bar) return;
       const doc = document.documentElement;
       const scrollable = doc.scrollHeight - doc.clientHeight;
-      const progress = scrollable > 0 ? (doc.scrollTop / scrollable) * 100 : 0;
-      bar.style.width = `${Math.min(100, Math.max(0, progress))}%`;
+      const progress = scrollable > 0 ? doc.scrollTop / scrollable : 0;
+      bar.style.transform = `scaleX(${Math.min(1, Math.max(0, progress))})`;
     };
 
     updateProgress();

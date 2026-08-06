@@ -86,6 +86,24 @@ Capturas mais altas que largas — uma tela de login, por exemplo — usam a var
 
 O fecho é sempre um bloco de contato com a mesma dupla de botões da página Sobre, ligando o projeto mostrado ao serviço oferecido. Nenhum número, preço ou prazo aparece; só o que está confirmado no código do próprio projeto.
 
+## Movimento
+
+**Tese: sala de corte.** Trocar de página é um corte de edição, não uma dissolvência. A saída é seca (`180ms`, linear) e a entrada é confiante (`400ms`, `--ease-out`); é a assimetria que separa um corte de um fade. A página entra pelo lado do movimento — mais funda entra pela direita, de volta entra pela esquerda —, e a direção vem da profundidade da URL, marcada como tipo de view transition durante a navegação.
+
+A navegação é entre documentos, com links comuns. Isso permite declarar `@view-transition { navigation: auto }` e ficar sem dependência nenhuma: onde o navegador não suporta, a navegação é a de sempre.
+
+**O momento autoral** é único: a marca do projeto viaja da linha da lista até a capa da página. A caixa leva `520ms`, mas as duas fotos da marca cruzam em `150ms` — é a mesma arte nas duas pontas, então um cruzamento longo viraria fantasma em vez de um objeto só se movendo.
+
+Um elemento só é pareado quando tem continuidade real a preservar:
+
+- A **topbar** não é pareada. Com a home rolada ela já saiu da tela, e parear as duas a faria descer voando justamente no caminho mais comum — rolar até os projetos e clicar.
+- O **avatar** não é pareado. Entre a home e a Sobre ele anda 4px e encolhe 8px: um morph que ninguém vê, cobrando o preço de ficar parado enquanto a página desliza.
+- As **marcas de projeto** perdem o nome quando estão fora da tela no instante da captura. Vale o scroll do momento, não o de destino: numa navegação com âncora o navegador só rola depois que a transição termina.
+
+O resto é feedback quieto, nunca decoração. As três funções no perfil trocam por corte de `90ms`, não por dissolvência. A seta de cada linha diz para onde o link leva — a externa viaja para fora, a interna avança na direção da leitura. A ficha de stack das páginas de projeto resolve item a item, com atraso total limitado, porque uma lista aparecendo como lista é o único stagger que se justifica.
+
+A barra de progresso escala em vez de animar largura, para rodar no compositor. Com `prefers-reduced-motion`, as transições caem para `1ms` e as entradas escalonadas somem — a navegação continua inteira.
+
 ## Responsividade e acesso
 
 A composição permanece em uma coluna em todos os tamanhos. No mobile, a margem reduz para `16px`, textos quebram naturalmente e nenhuma marca invade títulos. Há skip link, foco visível, estado ao vivo para cópia, texto alternativo na identidade e imagens decorativas vazias quando o nome textual já identifica a marca.
@@ -101,7 +119,8 @@ A composição permanece em uma coluna em todos os tamanhos. No mobile, a margem
 
 ### Não fazer
 
-- Não usar canvas, partículas, portais, órbitas, cubos ou fundos texturizados.
+- Não usar canvas, partículas, portais, órbitas, cubos ou fundos texturizados. O tema de games, código e edição entra na gramática do movimento — o corte, a marca que viaja, a ficha que resolve —, nunca como enfeite na tela.
+- Não animar seção por seção na rolagem, nem esconder conteúdo esperando script.
 - Não criar seções de tela cheia ou títulos monumentais.
 - Não repetir o mesmo conteúdo em hero, navegação e rodapé.
 - Não inventar métricas, clientes, depoimentos ou disponibilidade.
