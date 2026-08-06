@@ -50,62 +50,6 @@ document.querySelectorAll("[data-copy-discord]").forEach((button) => {
   button.addEventListener("click", () => copyDiscord(button));
 });
 
-// O Xenthor Launcher tem página própria em /projetos/xenthor-launcher e repositório
-// privado, então só os repositórios públicos são consultados na API do GitHub.
-const repoNames = ["OreonLauncher", "XenthorFiles"];
-const githubState = document.querySelector("[data-github-state]");
-const projects = document.querySelector("[data-projects]");
-
-const formatUpdated = (date) => {
-  if (!date) return "Atualização não informada";
-  return `Atualizado ${new Intl.DateTimeFormat("pt-BR", {
-    day: "2-digit",
-    month: "short",
-    year: "numeric",
-  }).format(new Date(date))}`;
-};
-
-const loadRepository = async (name) => {
-  const response = await fetch(`https://api.github.com/repos/Ucasplayer/${name}`, {
-    headers: { Accept: "application/vnd.github+json" },
-  });
-
-  if (!response.ok) throw new Error(`GitHub respondeu ${response.status}`);
-  return response.json();
-};
-
-Promise.allSettled(repoNames.map(loadRepository)).then((results) => {
-  let loadedCount = 0;
-
-  results.forEach((result) => {
-    if (result.status !== "fulfilled") return;
-
-    const repository = result.value;
-    const project = document.querySelector(`[data-repo="${repository.name}"]`);
-    if (!project) return;
-
-    loadedCount += 1;
-    const language = project.querySelector("[data-language]");
-    const updated = project.querySelector("[data-updated]");
-    if (language) language.textContent = repository.language || "Projeto público";
-    if (updated) updated.textContent = formatUpdated(repository.updated_at);
-  });
-
-  if (githubState) {
-    if (loadedCount === repoNames.length) {
-      githubState.textContent = "Dados públicos sincronizados com o GitHub.";
-    } else if (loadedCount > 0) {
-      githubState.textContent =
-        `${loadedCount} de ${repoNames.length} projetos sincronizados; os links continuam disponíveis.`;
-    } else {
-      githubState.textContent =
-        "O GitHub não respondeu agora; links e informações essenciais continuam disponíveis.";
-    }
-  }
-
-  projects?.setAttribute("aria-busy", "false");
-});
-
 const channelList = document.querySelector("[data-channels]");
 const youtubeState = document.querySelector("[data-youtube-status]");
 

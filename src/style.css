@@ -120,6 +120,11 @@ svg {
   border-bottom: 1px solid var(--line);
 }
 
+/* Home: sem a mini-marca à esquerda, os atalhos ficam centralizados. */
+.topbar-centered {
+  justify-content: center;
+}
+
 .mini-brand {
   min-height: 48px;
   display: inline-flex;
@@ -727,21 +732,10 @@ svg {
   object-fit: contain;
 }
 
-.project-logo-oreon {
-  width: 92%;
-  height: 92%;
-}
-
 .project-logo-kryptos {
   width: 76%;
   height: 76%;
   border-radius: 7px;
-}
-
-.project-mark-code {
-  color: var(--violet-soft);
-  font-size: 1.1rem;
-  font-weight: 750;
 }
 
 .contact-section {
@@ -830,6 +824,15 @@ footer p {
   font-size: 0.66rem;
   line-height: 1.5;
   text-align: right;
+}
+
+/* Home: sem a mini-marca, o crédito é o único conteúdo do rodapé. */
+.footer-centered {
+  justify-content: center;
+}
+
+.footer-centered p {
+  text-align: center;
 }
 
 .about-article {
@@ -1520,6 +1523,15 @@ body.easter-egg-active .profile-avatar img {
   footer p {
     max-width: 46ch;
     text-align: left;
+  }
+
+  /* Item único no rodapé da home: continua centralizado no mobile. */
+  .footer-centered {
+    align-items: center;
+  }
+
+  .footer-centered p {
+    text-align: center;
   }
 }
 

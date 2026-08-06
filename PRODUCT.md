@@ -51,8 +51,8 @@ Os visitantes avaliam o trabalho por projetos públicos no GitHub e iniciam cont
 ## Evidence on Hand
 
 - Perfil público: https://github.com/Ucasplayer
-- Projetos autorizados para destaque: XenthorLauncher, OreonLauncher e XenthorFiles.
-- O repositório `XenthorLauncher` é privado; o projeto é apresentado na página `/projetos/xenthor-launcher` em vez de um link para o GitHub. `OreonLauncher` e `XenthorFiles` são públicos e continuam sincronizando dados pela API.
+- Projetos destacados no site: XenthorLauncher e Kryptós SMP, cada um com página própria.
+- O repositório `XenthorLauncher` é privado; o projeto é apresentado na página `/projetos/xenthor-launcher` em vez de um link para o GitHub. `OreonLauncher` e `XenthorFiles` são públicos, mas foram retirados da seção Projetos por decisão do Ucas — links crus para repositório não somam à narrativa do portfólio. Quem quer o código chega pelo link "Ver GitHub".
 - Fatos confirmados do Xenthor Launcher, extraídos do próprio projeto: aplicativo Electron para Windows, macOS e Linux; Minecraft 1.21.5 com Fabric Loader; Java 21 com 4 GB de RAM recomendados e 2 GB mínimos; atualização de mods e bibliotecas por manifesto remoto com verificação de integridade; login com conta Microsoft e modo offline; notícias e status do servidor na tela inicial; Discord Rich Presence; atualização automática do próprio launcher; interface em português do Brasil e inglês.
 - Endereço do servidor, identificadores de Discord e URLs de infraestrutura do launcher não devem aparecer no site.
 - O Kryptós SMP é o site de seleção de um servidor de mitologia grega, publicado em `https://kryptos.eaeucas.studio` e apresentado na página `/projetos/kryptos-smp`. O código não está no GitHub.

@@ -24,7 +24,7 @@ for (const capture of [
   for (const source of [
     "/loud-comments.jpg",
     "/xenthor-logo.webp",
-    "/oreon-logo.png",
+    "/kryptos-logo.webp",
     "/ucas-avatar.jpg",
   ]) {
     const image = page.locator(`img[src="${source}"]`).first();

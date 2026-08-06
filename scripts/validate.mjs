@@ -19,11 +19,11 @@ for (const viewport of [
 
   page.on("pageerror", (error) => issues.push(`${viewport.name}: ${error.message}`));
   await page.goto(siteUrl, { waitUntil: "networkidle" });
-  await page.locator("[data-projects]").scrollIntoViewIfNeeded();
+  await page.locator(".project-list").scrollIntoViewIfNeeded();
   await page
     .waitForFunction(
       () =>
-        ["/xenthor-logo.webp", "/oreon-logo.png", "/loud-comments.jpg"].every((source) => {
+        ["/xenthor-logo.webp", "/kryptos-logo.webp", "/loud-comments.jpg"].every((source) => {
           const image = document.querySelector(`img[src="${source}"]`);
           return image?.complete && image.naturalWidth > 0;
         }),
@@ -51,7 +51,6 @@ for (const viewport of [
     emptyLinks: [...document.querySelectorAll("a")].filter(
       (link) => !link.getAttribute("href") || link.getAttribute("href") === "#",
     ).length,
-    busy: document.querySelector("[data-projects]")?.getAttribute("aria-busy"),
     skipHref: document.querySelector(".skip-link")?.getAttribute("href"),
     identityImages: [...document.querySelectorAll('img[src="/ucas-avatar.jpg"]')].map(
       (image) => ({
@@ -62,7 +61,7 @@ for (const viewport of [
     ),
     portfolioImages: [
       "/xenthor-logo.webp",
-      "/oreon-logo.png",
+      "/kryptos-logo.webp",
       "/loud-comments.jpg",
     ].map((source) => {
       const image = document.querySelector(`img[src="${source}"]`);
@@ -105,11 +104,11 @@ for (const viewport of [
     issues.push(`${viewport.name}: ${result.unlabeledButtons} botão(ões) sem nome`);
   }
   if (result.emptyLinks) issues.push(`${viewport.name}: ${result.emptyLinks} link(s) vazio(s)`);
-  if (result.busy !== "false") issues.push(`${viewport.name}: projetos ainda carregando`);
   if (result.skipHref !== "#conteudo") issues.push(`${viewport.name}: skip link incorreto`);
 
+  // A home mantém apenas o avatar do perfil; topbar e rodapé não repetem a marca.
   if (
-    result.identityImages.length < 3 ||
+    result.identityImages.length < 1 ||
     result.identityImages.some((image) => !image.complete || image.naturalWidth < 1)
   ) {
     issues.push(`${viewport.name}: identidade visual ausente ou não carregada`);

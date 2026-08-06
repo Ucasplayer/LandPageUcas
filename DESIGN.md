@@ -50,6 +50,8 @@ O roxo aparece em uma ação principal por contexto. O verde fica restrito à id
 
 Avatar circular de `96px`, nome, função e uma frase de posicionamento. A primeira ação copia o Discord; o GitHub permanece como rota secundária.
 
+Na home a identidade aparece uma única vez, no avatar do perfil. O topo traz só os atalhos (Sobre, GitHub, e-mail) centralizados, e o rodapé só o crédito, também centralizado — repetir a mini-marca em três lugares na mesma coluna não acrescentava informação. Nas rotas internas a mini-marca continua no topo e no rodapé, porque ali ela é o caminho de volta para a home.
+
 ### Especialidades
 
 Quatro etiquetas compactas — edição, bots, launchers e mods — resumem a oferta sem abrir cards explicativos.
@@ -62,11 +64,11 @@ Os canais pessoais formam uma lista compacta em duas colunas no desktop e uma co
 
 ### Projetos
 
-A seção reúne quatro linhas com a mesma leitura horizontal: logo, nome, descrição e metadados. No mobile, os metadados quebram sem alterar a ordem.
+A seção reúne duas linhas com a mesma leitura horizontal: logo, nome, descrição e metadados. No mobile, os metadados quebram sem alterar a ordem.
 
-Duas linhas são destacadas — Xenthor Launcher e Kryptós SMP. Elas recebem contorno, um rótulo violeta "Ver o projeto" e uma seta de navegação interna em vez da seta de link externo, porque levam para páginas do próprio site. Seus metadados são fixos: o Xenthor Launcher tem repositório privado e o Kryptós não vive no GitHub, então a API não responde por nenhum dos dois.
+As duas linhas são destacadas — Xenthor Launcher e Kryptós SMP. Elas recebem contorno, um rótulo violeta "Ver o projeto" e uma seta de navegação interna em vez da seta de link externo, porque levam para páginas do próprio site. Seus metadados são fixos: o Xenthor Launcher tem repositório privado e o Kryptós não vive no GitHub, então nada aqui depende da API.
 
-OreonLauncher e XenthorFiles continuam como linhas de repositório público, com linguagem e data de atualização vindas da API do GitHub.
+A seção não lista mais repositórios crus do GitHub. Cada projeto exibido tem uma página própria que explica o trabalho; quem quiser o código chega pelo link "Ver GitHub" no cabeçalho da seção.
 
 ### Contatos
 

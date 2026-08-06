@@ -13,7 +13,7 @@ related_targets: []
 - Ação principal: copiar/adicionar `@eaeucas` no Discord.
 - Rotas secundárias: GitHub, e-mail, X e Instagram.
 - Identidade pessoal: `public/ucas-avatar.jpg` conduz o perfil.
-- Provas técnicas: XenthorLauncher, OreonLauncher e XenthorFiles no GitHub.
+- Provas técnicas: Xenthor Launcher e Kryptós SMP, cada um com página própria no site.
 - Prova editorial: Ucas como editor de vídeo e Creative Manager da LOUD Comments.
 - Restrições: português do Brasil, dark com roxo, bordas arredondadas, sem alegações inventadas.
 - Direção: Perfil de Produção — coluna única, compacta, silenciosa e inspirada na clareza estrutural do Flow de Dados.
