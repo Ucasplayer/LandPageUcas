@@ -82,7 +82,9 @@ A rota `/sobre` herda a mesma coluna e transforma a biografia em leitura: retrat
 
 As rotas `/projetos/xenthor-launcher` e `/projetos/kryptos-smp` seguem o mesmo padrão. Mantêm a coluna de 620px e organizam a leitura em cinco blocos: capa com marca, nome, uma frase do que o produto faz e etiquetas de stack; capturas reais em largura total, com legenda e link para a imagem original; recursos em grade de dois para um; um fluxo em quatro passos reaproveitando a trajetória vertical; e uma ficha técnica em pares termo/valor que empilham no mobile.
 
-Capturas mais altas que largas — uma tela de login, por exemplo — usam a variante `shot-narrow`, limitada a 340px e centralizada, para não dominar a coluna. Quando o projeto está publicado, a capa ganha um link discreto para o site no ar.
+Capturas mais altas que largas — uma tela de login, por exemplo — usam a variante `shot-narrow`, limitada a 340px e centralizada, para não dominar a coluna. Em telas de 900px ou mais, só a galeria se alarga para 860px: capturas de painel e de launcher ficam ilegíveis dentro dos 620px, e a coluna de texto continua onde estava. Quando o projeto está publicado, a capa ganha um link discreto para o site no ar.
+
+Quando a interface do projeto concentra várias funções em uma tela, entra um bloco de tour — `tool-list`, linhas separadas por fio com nome da ferramenta e o que ela faz. Ele descreve a interface; a grade de cards ao lado fala de benefício. Os dois não repetem o mesmo item.
 
 O fecho é sempre um bloco de contato com a mesma dupla de botões da página Sobre, ligando o projeto mostrado ao serviço oferecido. Nenhum número, preço ou prazo aparece; só o que está confirmado no código do próprio projeto.
 

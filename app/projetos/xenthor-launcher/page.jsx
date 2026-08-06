@@ -48,6 +48,45 @@ const shots = [
     title: "Boas-vindas que contam a história",
     copy: "O primeiro acesso apresenta o mundo antes do jogador entrar — parte da experiência, não só um instalador.",
   },
+  {
+    src: "/xenthor-shot-main.webp",
+    width: 963,
+    height: 527,
+    alt: "Tela principal do Xenthor Launcher com o botão Jogar, o servidor selecionado, o status do servidor, o painel de notícias, a conta do jogador e os links do servidor.",
+    title: "A tela principal",
+    copy: "Tudo o que o jogador precisa em uma tela só: jogar, ver se o servidor está no ar, ler as novidades e ajustar o que quiser.",
+  },
+];
+
+const tools = [
+  {
+    title: "Jogar",
+    copy: "Baixa o que estiver faltando, confere os arquivos e abre o jogo. O progresso aparece logo abaixo do botão.",
+  },
+  {
+    title: "Servidor selecionado",
+    copy: "Mostra em qual servidor o jogador vai entrar e abre a lista quando existe mais de um.",
+  },
+  {
+    title: "Status do servidor",
+    copy: "O launcher conversa com o servidor de verdade e mostra quantos jogadores estão online, atualizando sozinho a cada cinco minutos. Fora do ar, marca offline.",
+  },
+  {
+    title: "Conta e skin",
+    copy: "A skin e o nome de quem está logado ficam à vista, e dá para trocar de conta sem sair do launcher.",
+  },
+  {
+    title: "Notícias",
+    copy: "Avisos e patch notes publicados no Discord do servidor aparecem aqui, com um alerta quando chega novidade.",
+  },
+  {
+    title: "Configurações",
+    copy: "Conta, resolução do jogo, mods opcionais, shaders, memória e Java. O mesmo botão avisa quando sai uma atualização do launcher.",
+  },
+  {
+    title: "Links do servidor",
+    copy: "Site, X, TikTok, YouTube e Discord, definidos por quem administra o servidor.",
+  },
 ];
 
 const features = [
@@ -68,8 +107,8 @@ const features = [
     copy: "Valida a versão de Java, sugere a instalação certa e deixa RAM e diretório de dados configuráveis.",
   },
   {
-    title: "Notícias dentro do launcher",
-    copy: "Avisos e patch notes chegam direto na tela inicial, junto com o status do servidor.",
+    title: "Mods opcionais e shaders",
+    copy: "O jogador liga e desliga os mods que não são obrigatórios, adiciona os dele e escolhe shaderpacks pelas configurações.",
   },
   {
     title: "Presença no Discord",
@@ -162,6 +201,18 @@ export default function XenthorLauncherPage() {
                 </figure>
               ))}
             </div>
+          </section>
+
+          <section className="case-block" aria-labelledby="tools-title">
+            <h2 id="tools-title">O que tem na tela principal</h2>
+            <ul className="tool-list">
+              {tools.map((tool) => (
+                <li key={tool.title}>
+                  <strong>{tool.title}</strong>
+                  <span>{tool.copy}</span>
+                </li>
+              ))}
+            </ul>
           </section>
 
           <section className="case-block" aria-labelledby="features-title">

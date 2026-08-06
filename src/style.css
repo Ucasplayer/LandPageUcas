@@ -1214,6 +1214,33 @@ footer p {
   line-height: 1.5;
 }
 
+/* Tour de interface: nome da ferramenta e o que ela faz, em linhas separadas
+   por fio. Distinto da grade de cards de recursos, que fala de benefício. */
+.tool-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--line);
+}
+
+.tool-list li {
+  padding: 13px 0;
+  display: grid;
+  gap: 3px;
+  border-bottom: 1px solid var(--line);
+}
+
+.tool-list strong {
+  font-size: 0.79rem;
+  font-weight: 750;
+}
+
+.tool-list span {
+  color: var(--copy);
+  font-size: 0.74rem;
+  line-height: 1.5;
+}
+
 .spec-list {
   margin: 0;
   border-top: 1px solid var(--line);
