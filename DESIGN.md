@@ -64,9 +64,11 @@ Os canais pessoais formam uma lista compacta em duas colunas no desktop e uma co
 
 ### Projetos
 
-A seção reúne duas linhas com a mesma leitura horizontal: logo, nome, descrição e metadados. No mobile, os metadados quebram sem alterar a ordem.
+A seção reúne três linhas com a mesma leitura horizontal: logo, nome, descrição e metadados. No mobile, os metadados quebram sem alterar a ordem.
 
-As duas linhas são destacadas — Xenthor Launcher e Kryptós SMP. Elas recebem contorno, um rótulo violeta "Ver o projeto" e uma seta de navegação interna em vez da seta de link externo, porque levam para páginas do próprio site. Seus metadados são fixos: o Xenthor Launcher tem repositório privado e o Kryptós não vive no GitHub, então nada aqui depende da API.
+As três linhas são destacadas — Xenthor Launcher, Kryptós SMP e Eclipse Mod. Elas recebem contorno, um rótulo violeta "Ver o projeto" e uma seta de navegação interna em vez da seta de link externo, porque levam para páginas do próprio site. Seus metadados são fixos: o Xenthor Launcher tem repositório privado, o Kryptós não vive no GitHub e o Eclipse Mod também não é público, então nada aqui depende da API.
+
+O Eclipse Mod não tem marca fornecida. Em vez de inventar um logo, o azulejo usa a própria arte do mod — a textura de corona sobre a textura de disco, no fundo Night — o que mantém a regra de preservar a identidade existente em vez de criar uma paralela.
 
 A seção não lista mais repositórios crus do GitHub. Cada projeto exibido tem uma página própria que explica o trabalho; quem quiser o código chega pelo link "Ver GitHub" no cabeçalho da seção.
 
@@ -80,11 +82,13 @@ A rota `/sobre` herda a mesma coluna e transforma a biografia em leitura: retrat
 
 ### Páginas de projeto
 
-As rotas `/projetos/xenthor-launcher` e `/projetos/kryptos-smp` seguem o mesmo padrão. Mantêm a coluna de 620px e organizam a leitura em cinco blocos: capa com marca, nome, uma frase do que o produto faz e etiquetas de stack; capturas reais em largura total, com legenda e link para a imagem original; recursos em grade de dois para um; um fluxo em quatro passos reaproveitando a trajetória vertical; e uma ficha técnica em pares termo/valor que empilham no mobile.
+As rotas `/projetos/xenthor-launcher`, `/projetos/kryptos-smp` e `/projetos/eclipse-mod` seguem o mesmo padrão. Mantêm a coluna de 620px e organizam a leitura em cinco blocos: capa com marca, nome, uma frase do que o produto faz e etiquetas de stack; capturas reais em largura total, com legenda e link para a imagem original; recursos em grade de dois para um; um fluxo em quatro passos reaproveitando a trajetória vertical; e uma ficha técnica em pares termo/valor que empilham no mobile.
 
 Capturas mais altas que largas — uma tela de login, por exemplo — usam a variante `shot-narrow`, limitada a 340px e centralizada, para não dominar a coluna. Em telas de 900px ou mais, só a galeria se alarga para 860px: capturas de painel e de launcher ficam ilegíveis dentro dos 620px, e a coluna de texto continua onde estava. Quando o projeto está publicado, a capa ganha um link discreto para o site no ar.
 
-Quando a interface do projeto concentra várias funções em uma tela, entra um bloco de tour — `tool-list`, linhas separadas por fio com nome da ferramenta e o que ela faz. Ele descreve a interface; a grade de cards ao lado fala de benefício. Os dois não repetem o mesmo item.
+Quando a interface do projeto concentra várias funções em uma tela, entra um bloco de tour — `tool-list`, linhas separadas por fio com nome da ferramenta e o que ela faz. Ele descreve a interface; a grade de cards ao lado fala de benefício. Os dois não repetem o mesmo item. Num projeto sem interface, como o Eclipse Mod, o mesmo par continua valendo com outra divisão: a lista descreve o que muda no mundo, a grade explica a decisão técnica por trás.
+
+Quando o projeto se opera por comando, a lista de comandos usa a mesma `spec-list` da ficha técnica, com o comando no lugar do termo. Comando aparece em monoespaçada, mas com a cor e o peso do texto em volta — a página não tem bloco de código, e um trecho colorido no meio dela chamaria mais atenção do que merece.
 
 O fecho é sempre um bloco de contato com a mesma dupla de botões da página Sobre, ligando o projeto mostrado ao serviço oferecido. Nenhum número, preço ou prazo aparece; só o que está confirmado no código do próprio projeto.
 
