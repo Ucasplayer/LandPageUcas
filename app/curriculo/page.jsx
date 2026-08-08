@@ -1,6 +1,16 @@
+import { social } from "../social-meta";
+
 export const metadata = {
   title: "Meu currículo — Ucas",
   description: "Currículo profissional de Lucas (Ucas).",
+  ...social({
+    title: "Meu currículo — Ucas",
+    description:
+      "Currículo profissional de Lucas: edição de vídeo, bots para Discord, launchers e mods.",
+    path: "/curriculo",
+    card: "home",
+    alt: "Cartão de Ucas: avatar, nome, função e as quatro especialidades.",
+  }),
 };
 
 const ArrowUpRight = () => (

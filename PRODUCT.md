@@ -41,6 +41,7 @@ Os visitantes avaliam o trabalho por projetos públicos no GitHub e iniciam cont
 - As capturas `public/kryptos-shot-landing.webp`, `public/kryptos-shot-form.webp`, `public/kryptos-shot-admin-login.webp`, `public/kryptos-shot-admin-list.webp` e `public/kryptos-shot-admin-form.webp` são telas reais do site do Kryptós fornecidas por Ucas. A marca `public/kryptos-logo.webp` vem do próprio projeto.
 - As capturas `public/eclipse-shot-aproximacao.webp`, `public/eclipse-shot-totalidade.webp`, `public/eclipse-shot-vanilla.webp` e `public/eclipse-shot-horizonte.webp` são capturas reais do Eclipse Mod em jogo, fornecidas por Ucas. O mod não tem marca própria: `public/eclipse-mark.webp` é montada a partir das texturas `eclipse_corona.png` e `eclipse_sun.png` do próprio mod.
 - Idioma principal: português do Brasil.
+- O portfólio fica em `https://eaeucas.studio`. Esse endereço é a base das URLs absolutas das prévias de link e está declarado em `app/social-meta.js`.
 
 ## Brand Commitments
 

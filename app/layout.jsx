@@ -1,4 +1,5 @@
 import SiteEffects from "./site-effects";
+import { SITE_URL, social } from "./social-meta";
 
 // Marca cada navegação como "forward" ou "back" pela profundidade da URL, para
 // que a página entre pelo lado do movimento. Precisa rodar durante o parse: o
@@ -55,17 +56,22 @@ const navigationDirection = `
 `;
 
 export const metadata = {
+  metadataBase: new URL(SITE_URL),
   title: "Ucas — Editor de vídeo & Developer",
   description:
     "Portfólio de edição de vídeo, bots para Discord, launchers e mods para Minecraft.",
   icons: {
     icon: "/favicon.svg",
   },
-  openGraph: {
+  // Vale para a home e para qualquer rota que não declare a sua própria carta.
+  ...social({
     title: "Ucas — Editor de vídeo & Developer",
     description:
-      "Edição e desenvolvimento para projetos.",
-  },
+      "Vídeos, bots para Discord, launchers e mods para servidores de Minecraft.",
+    path: "/",
+    card: "home",
+    alt: "Cartão de Ucas: avatar, nome, função e as quatro especialidades.",
+  }),
 };
 
 export const viewport = {

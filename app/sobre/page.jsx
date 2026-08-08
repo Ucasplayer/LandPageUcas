@@ -6,10 +6,20 @@
   FORM: Página de leitura curta dentro do Perfil de Produção, seguindo apresentação, interesses e trajetória.
 */
 
+import { social } from "../social-meta";
+
 export const metadata = {
   title: "Sobre o Lucas — Ucas",
   description:
     "A trajetória de Lucas com criação de conteúdo, tecnologia, Minecraft e música.",
+  ...social({
+    title: "Sobre o Lucas — Ucas",
+    description:
+      "A trajetória de Lucas com criação de conteúdo, tecnologia, Minecraft e música.",
+    path: "/sobre",
+    card: "sobre",
+    alt: "Cartão da página Sobre: avatar de Ucas e uma frase sobre a trajetória.",
+  }),
 };
 
 const ArrowUpRight = () => (

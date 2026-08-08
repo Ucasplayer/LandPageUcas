@@ -92,6 +92,18 @@ Quando o projeto se opera por comando, a lista de comandos usa a mesma `spec-lis
 
 O fecho é sempre um bloco de contato com a mesma dupla de botões da página Sobre, ligando o projeto mostrado ao serviço oferecido. Nenhum número, preço ou prazo aparece; só o que está confirmado no código do próprio projeto.
 
+### Prévia de link
+
+Cada rota tem uma carta de 1200×630 em `public/og/`, gerada por `node scripts/og.mjs` a partir das artes que já existem no site. São dois formatos, e a escolha entre eles é a mesma pergunta de sempre: existe produto para mostrar?
+
+**Carta de projeto** — duas colunas. A captura real ocupa a direita, no recorte em que o assunto cabe inteiro, e some para dentro do fundo Night por um degradê, sem véu por cima. À esquerda, a mesma pilha da capa da página: azulejo da marca, rótulo, nome, uma frase e as etiquetas de stack. O produto aparece antes do nome de quem fez; a assinatura fica no rodapé da carta, em Muted.
+
+**Carta de perfil** — sem captura, porque não há produto. Repete a composição centrada da própria home: avatar, nome, função em Violet Soft, uma frase e as especialidades.
+
+Nenhuma das duas usa texto sobre imagem clara, gradiente decorativo ou moldura de navegador. Capturas de jogo entram com o HUD cortado fora do recorte — a hotbar não é parte do trabalho.
+
+Os arquivos são JPEG commitados, não gerados em tempo de requisição: Discord, X e WhatsApp fazem cache agressivo da prévia e leem JPEG sem discussão, e um arquivo no repositório pode ser conferido a olho antes de subir.
+
 ## Movimento
 
 **Tese: sala de corte.** Trocar de página é um corte de edição, não uma dissolvência. A saída é seca (`180ms`, linear) e a entrada é confiante (`400ms`, `--ease-out`); é a assimetria que separa um corte de um fade. A página entra pelo lado do movimento — mais funda entra pela direita, de volta entra pela esquerda —, e a direção vem da profundidade da URL, marcada como tipo de view transition durante a navegação.

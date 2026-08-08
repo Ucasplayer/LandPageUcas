@@ -6,15 +6,20 @@
   FORM: Estudo de caso curto em coluna única — capturas, recursos, fluxo, ficha técnica e contato.
 */
 
+import { social } from "../../social-meta";
+
 export const metadata = {
   title: "Xenthor Launcher — Ucas",
   description:
     "Launcher desktop do servidor Xenthor: instala mods, valida arquivos, gerencia Java e abre o Minecraft com um clique.",
-  openGraph: {
+  ...social({
     title: "Xenthor Launcher — Ucas",
     description:
       "Launcher desktop feito em Electron para o Xenthor SMP: atualização automática de mods, login Microsoft e entrada no servidor com um clique.",
-  },
+    path: "/projetos/xenthor-launcher",
+    card: "xenthor-launcher",
+    alt: "Cartão do Xenthor Launcher: a tela principal do launcher com o botão Jogar.",
+  }),
 };
 
 const ArrowUpRight = () => (

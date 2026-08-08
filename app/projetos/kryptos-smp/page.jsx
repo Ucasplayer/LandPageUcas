@@ -6,15 +6,20 @@
   FORM: Estudo de caso curto seguindo o padrão de /projetos/xenthor-launcher.
 */
 
+import { social } from "../../social-meta";
+
 export const metadata = {
   title: "Kryptós SMP — Ucas",
   description:
     "Site de inscrição do Kryptós SMP: formulário em etapas para os jogadores e painel de análise para a administração do servidor.",
-  openGraph: {
+  ...social({
     title: "Kryptós SMP — Ucas",
     description:
       "Formulário de seleção em etapas e painel completo de análise de inscrições para um servidor de Minecraft.",
-  },
+    path: "/projetos/kryptos-smp",
+    card: "kryptos-smp",
+    alt: "Cartão do Kryptós SMP: a página pública de inscrição do servidor.",
+  }),
 };
 
 const ArrowUpRight = () => (

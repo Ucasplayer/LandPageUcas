@@ -6,15 +6,20 @@
   FORM: Estudo de caso curto em coluna única — capturas, linha do tempo, o que muda no mundo, decisões, comandos, ficha técnica e contato.
 */
 
+import { social } from "../../social-meta";
+
 export const metadata = {
   title: "Eclipse Mod — Ucas",
   description:
     "Mod de Minecraft que transforma o eclipse em evento global do servidor: céu, corona e escurecimento próprios, sincronizados para todo mundo ver o mesmo frame.",
-  openGraph: {
+  ...social({
     title: "Eclipse Mod — Ucas",
     description:
       "Mod Forge 1.20.1 feito para o Eclipse Realm SMP: eclipse solar e lunar acionado por comando, com renderização própria de céu e corona gerada por shader.",
-  },
+    path: "/projetos/eclipse-mod",
+    card: "eclipse-mod",
+    alt: "Cartão do Eclipse Mod: o pico da totalidade em Minecraft, com o disco negro e a corona.",
+  }),
 };
 
 const ArrowUpRight = () => (
