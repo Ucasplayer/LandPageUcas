@@ -388,6 +388,16 @@ svg {
   font-weight: 700;
 }
 
+.resume-meta a {
+  text-decoration: none;
+}
+
+.resume-meta a:hover,
+.resume-meta a:focus-visible {
+  color: var(--text);
+  text-decoration: underline;
+}
+
 .resume-block {
   margin-top: 24px;
   padding-top: 16px;

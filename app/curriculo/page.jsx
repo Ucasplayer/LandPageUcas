@@ -64,17 +64,17 @@ export default function CurriculoPage() {
             <h2 id="resume-title">Currículo</h2>
 
             <p className="resume-meta">
-              lucasrcomercial1@gmail.com <span aria-hidden="true">•</span> (21)99111-0119{" "}
-              <span aria-hidden="true">•</span> Rio de Janeiro, RJ
+              <a href="mailto:lucasrcomercial1@gmail.com">lucasrcomercial1@gmail.com</a>
+              <span aria-hidden="true">•</span>
+              <span>Rio de Janeiro, RJ</span>
             </p>
 
             <section className="resume-block" aria-labelledby="resume-summary-title">
               <h3 id="resume-summary-title">Resumo profissional</h3>
               <p>
                 Profissional de TI com experiência em suporte técnico, edição de vídeo e
-                desenvolvimento criativo. Atingi um aumento de 30% nas visualizações de
-                páginas nas redes sociais e tenho habilidades em desenvolvimento de projetos
-                e marketing digital.
+                desenvolvimento de projetos. Atuo na criação de conteúdo para redes sociais,
+                no desenvolvimento de mods e launchers para Minecraft e em marketing digital.
               </p>
             </section>
 
@@ -83,40 +83,42 @@ export default function CurriculoPage() {
 
               <div className="resume-entry">
                 <div className="resume-entry-head">
-                  <strong>Estagiário de TI</strong>
-                  <span>2021</span>
+                  <strong>Desenvolvedor freelancer</strong>
+                  <span>2026</span>
                 </div>
-                <p className="resume-entry-company">Van Security T.I</p>
+                <p className="resume-entry-company">Autônomo</p>
                 <ul>
                   <li>
-                    Prestei suporte técnico e em redes, contribuindo para a eficiência da
-                    equipe.
+                    Desenvolvi mods em Java para servidores de Minecraft e criei launchers,
+                    além de gerenciar o marketing de conteúdo nas redes sociais.
                   </li>
                 </ul>
               </div>
 
               <div className="resume-entry">
                 <div className="resume-entry-head">
-                  <strong>Editor de vídeo e Creative Manager</strong>
-                  <span>2025-2026</span>
+                  <strong>Editor de vídeo e creative manager</strong>
+                  <span>2025 – 2026</span>
                 </div>
                 <p className="resume-entry-company">@loudcomments e @hospicioloudelite</p>
                 <ul>
                   <li>
-                    Aumentei as visualizações em 30% nas páginas, alcançando milhares de
-                    visualizações e ampliando o público.
+                    Aumentei em 30% as visualizações das páginas, alcançando milhares de
+                    views e ampliando o público.
                   </li>
                 </ul>
               </div>
 
               <div className="resume-entry">
                 <div className="resume-entry-head">
-                  <strong>Freelancer Developer 2026</strong>
+                  <strong>Estagiário de TI</strong>
+                  <span>2021</span>
                 </div>
+                <p className="resume-entry-company">Van Security TI</p>
                 <ul>
                   <li>
-                    Desenvolvi mods em Java para servidores de Minecraft e criei launchers,
-                    além de gerenciar marketing de conteúdo nas redes sociais.
+                    Prestei suporte técnico e de redes, contribuindo para a eficiência da
+                    equipe.
                   </li>
                 </ul>
               </div>
@@ -125,9 +127,9 @@ export default function CurriculoPage() {
             <section className="resume-block" aria-labelledby="resume-education-title">
               <h3 id="resume-education-title">Formação acadêmica</h3>
               <p className="resume-single-line">
-                Bacharel em Ciências da Computação
+                Bacharelado em Ciência da Computação
                 <br />
-                UNESA (Universidade Estácio)
+                Universidade Estácio de Sá (UNESA)
               </p>
             </section>
 
@@ -156,8 +158,8 @@ export default function CurriculoPage() {
               <h3 id="resume-certifications-title">Certificações</h3>
               <ul>
                 <li>Informática avançada</li>
-                <li>Curso de Inglês Mário Vergara</li>
-                <li>Curso de Música Adesa Musical</li>
+                <li>Curso de inglês — Mairo Vergara</li>
+                <li>Curso de música — Adesa Musical</li>
               </ul>
             </section>
           </section>
