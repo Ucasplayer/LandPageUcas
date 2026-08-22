@@ -64,6 +64,8 @@ Os tokens de Surface Mark para baixo já existiam no CSS como valores cravados n
 |---|---|
 | `/` | Apresentação. Perfil, trabalhos, canais, três projetos em destaque e contato. |
 | `/mods` | Lista completa de projetos, com captura, frase e ficha breve. |
+| `/blog` | Lista de posts, com capa, resumo, tag, data e tempo de leitura. |
+| `/blog/<slug>` | O post inteiro. |
 | `/projetos/<slug>` | O projeto inteiro: capturas, recursos, fluxo e ficha técnica. |
 | `/sobre` | Trajetória. |
 | `/curriculo` | Currículo profissional. |
@@ -83,6 +85,14 @@ O card com captura esteve na home entre duas revisões de 22/08/2026 e saiu: dá
 ### Regra de sobrancelha
 
 Nenhum rótulo em caixa alta acima de um título. Quando a função é informação de verdade — o papel do Ucas na LOUD Comments, por exemplo — ela vem **depois** do nome, em `Geist Mono`.
+
+### Card do blog na home
+
+Fica logo abaixo do botão do currículo, com no máximo `460px`. Um post por vez: capa de `92×62`, título, resumo cortado em duas linhas e a linha de tag e data. Abaixo, um ponto por post.
+
+O giro é de `6s`, e para sozinho quando o ponteiro entra no card, quando o foco entra nele, quando a aba sai de vista, quando o visitante escolhe um ponto, e quando o sistema pede movimento reduzido. Os slides inativos usam o atributo `hidden`, não opacidade: escondido por opacidade, um link continua recebendo foco pelo Tab. `.blog-slide[hidden]` precisa declarar `display: none` porque o `display: grid` do próprio `.blog-slide` ganha da folha do navegador.
+
+Sem JavaScript, o card mostra o post mais recente e não gira — que é exatamente o que ele promete.
 
 ### Ícones
 

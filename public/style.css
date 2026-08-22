@@ -10,6 +10,7 @@
   --copy: #c7bfce;
   --muted: #867e92;
   --line: #26202f;
+  --line-strong: #3a3248;
   --loud-green: #00c46a;
 
   /* Azulejo atrás das marcas de projeto: uma ameixa mais quente que
@@ -355,6 +356,154 @@ svg {
   height: 17px;
   margin-left: auto;
   flex: 0 0 auto;
+}
+
+/* --------------------------------------------------------------------------
+   Card do blog na home
+   Compacto de propósito: fecha a abertura sem competir com o botão do
+   currículo, que continua sendo a ação principal da seção.
+   -------------------------------------------------------------------------- */
+
+.blog-teaser {
+  max-width: 460px;
+  margin: 34px auto 0;
+  text-align: left;
+}
+
+.blog-teaser-heading {
+  margin: 0 0 10px;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.blog-slide {
+  min-height: 92px;
+  padding: 12px;
+  display: grid;
+  grid-template-columns: 92px minmax(0, 1fr) 18px;
+  align-items: center;
+  gap: 14px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  color: var(--text);
+  text-decoration: none;
+  box-shadow: var(--shadow-1);
+  transition:
+    background-color 180ms var(--ease-out),
+    border-color 180ms var(--ease-out),
+    box-shadow 180ms var(--ease-out);
+}
+
+/* `display: grid` acima ganha do `display: none` que o atributo hidden herda
+   da folha do navegador. Sem esta linha, os três slides ficam empilhados. */
+.blog-slide[hidden] {
+  display: none;
+}
+
+.blog-slide:hover {
+  background: var(--surface-high);
+  border-color: var(--violet);
+  box-shadow: var(--shadow-2);
+}
+
+.blog-slide > img {
+  width: 92px;
+  height: 62px;
+  border-radius: 9px;
+  object-fit: cover;
+}
+
+/* O resumo para em duas linhas: o card é uma chamada, não o post. */
+.blog-slide .row-copy > span {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.blog-dots {
+  margin-top: 12px;
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+}
+
+.blog-dot {
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  background: none;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.blog-dot::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  background: var(--line-strong);
+  border-radius: 50%;
+  transition:
+    background-color 180ms var(--ease-out),
+    transform 180ms var(--ease-out);
+}
+
+.blog-dot:hover::before {
+  background: var(--muted);
+}
+
+.blog-dot[aria-current]::before {
+  background: var(--violet-soft);
+  transform: scale(1.35);
+}
+
+/* --------------------------------------------------------------------------
+   Post do blog
+   -------------------------------------------------------------------------- */
+
+/* A capa do post é mais baixa que a de um projeto: ali a captura é a prova e
+   merece altura, aqui ela acompanha um resumo de duas linhas. */
+.post-card .project-shot {
+  aspect-ratio: 12 / 5;
+}
+
+.project-body.post-body {
+  grid-template-columns: minmax(0, 1fr) 22px;
+}
+
+.post-meta {
+  margin: 16px 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+}
+
+.post-cover {
+  margin: 34px 0 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+}
+
+.post-cover img {
+  width: 100%;
+  height: auto;
+}
+
+.post-cover + .about-copy {
+  margin-top: 30px;
 }
 
 .resume-card {
@@ -1636,6 +1785,10 @@ body.easter-egg-active .profile-avatar img {
     gap: 13px;
   }
 
+  .project-body.post-body {
+    grid-template-columns: minmax(0, 1fr) 18px;
+  }
+
   .project-mark {
     width: 60px;
     height: 60px;
@@ -1746,6 +1899,10 @@ body.easter-egg-active .profile-avatar img {
   .project-body {
     grid-template-columns: 54px minmax(0, 1fr) 16px;
     gap: 10px;
+  }
+
+  .project-body.post-body {
+    grid-template-columns: minmax(0, 1fr) 16px;
   }
 
   .project-mark {

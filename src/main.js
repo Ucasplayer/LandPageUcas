@@ -96,3 +96,77 @@ fetch("/api/latest-videos")
   .finally(() => {
     channelList?.setAttribute("aria-busy", "false");
   });
+
+/* --------------------------------------------------------------------------
+   Card do blog: um post por vez, trocando sozinho.
+
+   Os slides já vêm no HTML — o servidor manda todos, com `hidden` em todos
+   menos o primeiro. Aqui só se troca qual está visível. Sem JS, o visitante vê
+   o post mais recente, que é o que o card promete.
+
+   `hidden` em vez de `opacity: 0` porque cada slide é um link: escondido pela
+   opacidade, ele continuaria recebendo foco pelo Tab.
+   -------------------------------------------------------------------------- */
+
+const ROTATION_MS = 6000;
+
+const rotator = document.querySelector("[data-blog-rotator]");
+const slides = rotator ? [...rotator.querySelectorAll(".blog-slide")] : [];
+
+if (slides.length > 1) {
+  const dots = [...document.querySelectorAll("[data-blog-dot]")];
+  const status = document.querySelector("[data-blog-status]");
+  const stillMotion = matchMedia("(prefers-reduced-motion: reduce)");
+
+  let current = 0;
+  let timer;
+
+  const show = (next, announce) => {
+    current = (next + slides.length) % slides.length;
+
+    slides.forEach((slide, index) => {
+      slide.hidden = index !== current;
+    });
+
+    dots.forEach((dot, index) => {
+      if (index === current) dot.setAttribute("aria-current", "true");
+      else dot.removeAttribute("aria-current");
+    });
+
+    // Só anuncia quando a troca partiu do visitante. O giro automático narrado
+    // a cada seis segundos atrapalharia quem usa leitor de tela.
+    if (announce && status) {
+      status.textContent = slides[current].querySelector("strong")?.textContent ?? "";
+    }
+  };
+
+  const stop = () => window.clearInterval(timer);
+
+  const start = () => {
+    stop();
+    if (stillMotion.matches) return;
+    timer = window.setInterval(() => show(current + 1), ROTATION_MS);
+  };
+
+  dots.forEach((dot, index) => {
+    dot.addEventListener("click", () => {
+      show(index, true);
+      stop();
+    });
+  });
+
+  // Parar enquanto o visitante está lendo o card ou navegando por ele.
+  rotator.addEventListener("pointerenter", stop);
+  rotator.addEventListener("pointerleave", start);
+  rotator.addEventListener("focusin", stop);
+  rotator.addEventListener("focusout", start);
+
+  // Aba em segundo plano não precisa girar.
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) stop();
+    else start();
+  });
+
+  stillMotion.addEventListener("change", start);
+  start();
+}
