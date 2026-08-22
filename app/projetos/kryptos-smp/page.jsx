@@ -7,6 +7,7 @@
 */
 
 import { social } from "../../social-meta";
+import { ArrowUpRight, SiteHeader, SiteFooter } from "../../site-chrome";
 
 export const metadata = {
   title: "Kryptós SMP — Ucas",
@@ -21,12 +22,6 @@ export const metadata = {
     alt: "Cartão do Kryptós SMP: a página pública de inscrição do servidor.",
   }),
 };
-
-const ArrowUpRight = () => (
-  <svg className="row-arrow" aria-hidden="true" viewBox="0 0 24 24">
-    <path d="M5 19 19 5M9 5h10v10" />
-  </svg>
-);
 
 const shots = [
   {
@@ -118,25 +113,12 @@ export default function KryptosPage() {
       </a>
 
       <main className="page-shell case-page" id="conteudo">
-        <header className="topbar">
-          <a
-            className="mini-brand"
-            href="/"
-            aria-label="Ucas, voltar para a página inicial"
-          >
-            <img src="/ucas-avatar.jpg" alt="" width="32" height="32" />
-            <span>UCAS</span>
-          </a>
-
-          <nav className="top-actions" aria-label="Atalhos">
-            <a className="about-action" href="/#projetos">
-              Projetos
-            </a>
-            <a className="about-action" href="/">
-              Início
-            </a>
-          </nav>
-        </header>
+        <SiteHeader
+          links={[
+            { href: "/mods", label: "Projetos" },
+            { href: "/", label: "Início" },
+          ]}
+        />
 
         <article className="case-article">
           <header className="case-hero">
@@ -148,7 +130,6 @@ export default function KryptosPage() {
                 height="154"
               />
             </div>
-            <p className="case-kicker">Site sob medida · Minecraft</p>
             <h1>Kryptós SMP</h1>
             <p className="case-lede">
               O sistema de seleção de um servidor de mitologia grega. O jogador se
@@ -277,13 +258,7 @@ export default function KryptosPage() {
           </section>
         </article>
 
-        <footer>
-          <div className="footer-brand">
-            <img src="/ucas-avatar.jpg" alt="" width="28" height="28" loading="lazy" />
-            <span>Ucas</span>
-          </div>
-          <p>Sites, launchers e bots para servidores de Minecraft.</p>
-        </footer>
+        <SiteFooter note="Sites, launchers e bots para servidores de Minecraft." />
       </main>
     </>
   );

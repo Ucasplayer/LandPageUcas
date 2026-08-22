@@ -22,15 +22,28 @@ description: Um portfólio compacto e direto para apresentar serviços, trabalho
 | Violet Soft | `#a78bfa` | Detalhes e links |
 | Text | `#f4f1f8` | Títulos e valores |
 | Copy | `#c7bfce` | Texto de apoio |
-| Muted | `#81788d` | Metadados |
+| Muted | `#867e92` | Metadados |
 | Line | `#26202f` | Divisores e contornos |
 | Loud Green | `#00c46a` | Exclusivo da prova LOUD Comments |
+| Surface Mark | `#21112f` | Azulejo atrás das marcas de projeto |
+| YouTube | `#ff6b6b` | Marca do YouTube nas linhas de canal |
+| YouTube Wash | `rgba(255, 76, 76, 0.08)` | Fundo da mesma marca |
+| On Violet | `#fff` | Texto sobre a ação primária |
+| On Violet Soft | `rgba(255, 255, 255, 0.78)` | Texto de apoio sobre a ação primária |
+| Veil Weak | `rgba(255, 255, 255, 0.018)` | Hover das linhas editoriais |
+| Veil | `rgba(255, 255, 255, 0.055)` | Fundo dos ícones de contato |
+| Veil Strong | `rgba(255, 255, 255, 0.14)` | O mesmo ícone dentro da linha primária |
 
 O roxo aparece em uma ação principal por contexto. O verde fica restrito à identidade da LOUD Comments.
 
+Muted subiu de `#81788d` para `#867e92` em 22/08/2026: o valor antigo dava 4.47:1 sobre Surface e 4.25:1 sobre Surface High, abaixo do mínimo de 4.5:1 para texto normal. Mesmo matiz e mesma saturação, 2% a mais de luminância.
+
+Os tokens de Surface Mark para baixo já existiam no CSS como valores cravados na mão, fora do sistema. Foram declarados em 22/08/2026 sem mudar nenhuma cor renderizada — a correção foi documentar a decisão, não trocar a cor.
+
 ### Tipografia
 
-- Família única: pilha de sistema `ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif`.
+- Família de texto: `Geist`, com a pilha de sistema como reserva. Trocada em 22/08/2026: a pilha de sistema como voz dos títulos é o sinal mais barato de página não desenhada.
+- Família de dados: `Geist Mono`, usada em código, na função das linhas editoriais e nas etiquetas de stack.
 - Título principal: `2rem`, peso `750`, entrelinha `1.05`.
 - Títulos de seção: `1rem`, peso `700`.
 - Corpo: `0.9rem`, entrelinha `1.6`.
@@ -41,10 +54,39 @@ O roxo aparece em uma ação principal por contexto. O verde fica restrito à id
 - Coluna principal: `min(620px, calc(100% - 32px))`.
 - Blocos: raio de `14px`; controles compactos: `11px`.
 - Espaçamento base: `8px`; separações principais de `44–64px`.
-- Superfícies usam diferença de cor ou borda, nunca borda e sombra simultaneamente.
+- Elevação: `--shadow-1` para linhas e cards, `--shadow-2` para hover e para o cartão do currículo. Toda sombra tem deslocamento **e** desfoque; halo sem deslocamento é decoração, não profundidade.
+- Duas coisas saem da coluna para `860px` acima de `900px`: a lista de `/mods` e a galeria das páginas de projeto (bloco inteiro, título junto). São as únicas quebras de coluna do site, e existem onde a largura muda o que dá para entender.
 - Alvos interativos têm no mínimo `48px`.
 
+## Rotas
+
+| Rota | Papel |
+|---|---|
+| `/` | Apresentação. Perfil, trabalhos, canais, três projetos em destaque e contato. |
+| `/mods` | Lista completa de projetos, com captura, frase e ficha breve. |
+| `/projetos/<slug>` | O projeto inteiro: capturas, recursos, fluxo e ficha técnica. |
+| `/sobre` | Trajetória. |
+| `/curriculo` | Currículo profissional. |
+
 ## Componentes
+
+### Projeto: dois formatos, dois lugares
+
+**Na home**, o projeto é uma linha (`.project-row .project-row-featured`): marca de `68px`, nome, uma frase e a stack, dentro da coluna de `620px`. Compacta de propósito — a home apresenta, não cataloga. Fecha com um botão `.see-all` para a lista completa.
+
+**Em `/mods`**, o projeto é um card (`.project-card`): captura real no topo em `16/9` com recorte pelo alto, depois o mesmo miolo da linha, e uma faixa `.mods-meta` com tipo, plataforma e situação do código. A lista sai da coluna para `860px` acima de `900px`.
+
+Nos dois formatos a marca de `68px` é o elemento que viaja na transição para a página do projeto.
+
+O card com captura esteve na home entre duas revisões de 22/08/2026 e saiu: dá peso demais a uma seção que é apresentação. As capturas continuam existindo em `public/` e agora aparecem em `/mods`.
+
+### Regra de sobrancelha
+
+Nenhum rótulo em caixa alta acima de um título. Quando a função é informação de verdade — o papel do Ucas na LOUD Comments, por exemplo — ela vem **depois** do nome, em `Geist Mono`.
+
+### Ícones
+
+Todo ícone é desenhado, em SVG, com traço consistente. Marca de terceiro (Discord, X, GitHub, YouTube) é desenho cheio via `.brand-glyph`. Letra ou glifo Unicode no lugar de ícone não é ícone.
 
 ### Identidade
 

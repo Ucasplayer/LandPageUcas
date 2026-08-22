@@ -7,6 +7,7 @@
 */
 
 import { social } from "../../social-meta";
+import { ArrowUpRight, SiteHeader, SiteFooter } from "../../site-chrome";
 
 export const metadata = {
   title: "Eclipse Mod — Ucas",
@@ -21,12 +22,6 @@ export const metadata = {
     alt: "Cartão do Eclipse Mod: o pico da totalidade em Minecraft, com o disco negro e a corona.",
   }),
 };
-
-const ArrowUpRight = () => (
-  <svg className="row-arrow" aria-hidden="true" viewBox="0 0 24 24">
-    <path d="M5 19 19 5M9 5h10v10" />
-  </svg>
-);
 
 const shots = [
   {
@@ -158,25 +153,12 @@ export default function EclipseModPage() {
       </a>
 
       <main className="page-shell case-page" id="conteudo">
-        <header className="topbar">
-          <a
-            className="mini-brand"
-            href="/"
-            aria-label="Ucas, voltar para a página inicial"
-          >
-            <img src="/ucas-avatar.jpg" alt="" width="32" height="32" />
-            <span>UCAS</span>
-          </a>
-
-          <nav className="top-actions" aria-label="Atalhos">
-            <a className="about-action" href="/#projetos">
-              Projetos
-            </a>
-            <a className="about-action" href="/">
-              Início
-            </a>
-          </nav>
-        </header>
+        <SiteHeader
+          links={[
+            { href: "/mods", label: "Projetos" },
+            { href: "/", label: "Início" },
+          ]}
+        />
 
         <article className="case-article">
           <header className="case-hero">
@@ -188,7 +170,6 @@ export default function EclipseModPage() {
                 height="400"
               />
             </div>
-            <p className="case-kicker">Projeto próprio · Mod de Minecraft</p>
             <h1>Eclipse Mod</h1>
             <p className="case-lede">
               Um eclipse que o servidor inteiro vive junto. Um comando escurece o
@@ -331,13 +312,7 @@ export default function EclipseModPage() {
           </section>
         </article>
 
-        <footer>
-          <div className="footer-brand">
-            <img src="/ucas-avatar.jpg" alt="" width="28" height="28" loading="lazy" />
-            <span>Ucas</span>
-          </div>
-          <p>Launchers, mods e bots para servidores de Minecraft.</p>
-        </footer>
+        <SiteFooter note="Launchers, mods e bots para servidores de Minecraft." />
       </main>
     </>
   );

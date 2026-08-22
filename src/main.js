@@ -75,7 +75,7 @@ fetch("/api/latest-videos")
       if (!slot || video.error) return;
 
       loadedCount += 1;
-      slot.textContent = `▶ ${video.title}`;
+      slot.textContent = video.title;
       slot.title = formatPublished(video.publishedAt);
       slot.hidden = false;
     });

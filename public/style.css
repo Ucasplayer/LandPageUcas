@@ -8,9 +8,39 @@
   --violet-soft: #a78bfa;
   --text: #f4f1f8;
   --copy: #c7bfce;
-  --muted: #81788d;
+  --muted: #867e92;
   --line: #26202f;
   --loud-green: #00c46a;
+
+  /* Azulejo atrás das marcas de projeto: uma ameixa mais quente que
+     --surface-high, usada por .project-mark e .case-mark. */
+  --surface-mark: #21112f;
+
+  /* Vermelho do YouTube. Cor de terceiro, como --loud-green. */
+  --youtube: #ff6b6b;
+  --youtube-wash: rgba(255, 76, 76, 0.08);
+
+  /* O par de texto sobre a ação primária violeta. */
+  --on-violet: #fff;
+  --on-violet-soft: rgba(255, 255, 255, 0.78);
+
+  /* Véus de branco: hover e fundos de ícone que se adaptam ao que está
+     embaixo, em vez de fixar uma superfície. */
+  --veil-weak: rgba(255, 255, 255, 0.018);
+  --veil: rgba(255, 255, 255, 0.055);
+  --veil-strong: rgba(255, 255, 255, 0.14);
+  /* A voz da página. A stack de sistema segue como reserva: se a Geist não
+     carregar, o site cai em Segoe UI sem quebrar nada. */
+  --font-sans: "Geist", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    monospace;
+
+  /* Sombra com deslocamento E desfoque. Sem o deslocamento, o que sobra é um
+     halo, que é decoração, não profundidade. */
+  --shadow-1: 0 1px 2px rgba(4, 2, 10, 0.5), 0 8px 22px -12px rgba(4, 2, 10, 0.75);
+  --shadow-2: 0 2px 5px rgba(4, 2, 10, 0.55), 0 22px 50px -18px rgba(4, 2, 10, 0.88);
+
   --container: min(620px, calc(100% - 32px));
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -28,8 +58,7 @@ body {
   margin: 0;
   background: var(--night);
   color: var(--text);
-  font-family:
-    ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -67,7 +96,7 @@ svg {
 
 ::selection {
   background: var(--violet);
-  color: #fff;
+  color: var(--on-violet);
 }
 
 :focus-visible {
@@ -278,8 +307,9 @@ svg {
 .button-primary {
   justify-content: flex-start;
   background: var(--violet);
-  color: #fff;
+  color: var(--on-violet);
   text-align: left;
+  box-shadow: var(--shadow-1);
 }
 
 .button-primary:hover,
@@ -320,42 +350,11 @@ svg {
   margin-left: 0;
 }
 
-.button-secondary {
-  background: var(--surface);
-  color: var(--text);
-}
-
-.button-secondary:hover {
-  background: var(--surface-high);
-}
-
 .button-arrow {
   width: 17px;
   height: 17px;
   margin-left: auto;
   flex: 0 0 auto;
-}
-
-.service-tags {
-  margin: 16px auto 0;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  justify-content: center;
-  list-style: none;
-}
-
-.service-tags li {
-  min-height: 34px;
-  padding: 0 12px;
-  display: inline-flex;
-  align-items: center;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  color: var(--muted);
-  font-size: 0.7rem;
-  font-weight: 700;
 }
 
 .resume-card {
@@ -366,6 +365,7 @@ svg {
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: 14px;
+  box-shadow: var(--shadow-2);
 }
 
 .resume-card h2 {
@@ -553,8 +553,10 @@ svg {
   color: var(--text);
   text-align: left;
   text-decoration: none;
+  box-shadow: var(--shadow-1);
   transition:
     background-color 180ms var(--ease-out),
+    box-shadow 180ms var(--ease-out),
     transform 180ms var(--ease-out);
 }
 
@@ -562,6 +564,7 @@ svg {
 .channel-row:hover,
 .project-row:hover,
 .contact-row:hover {
+  box-shadow: var(--shadow-2);
   transform: translateX(3px);
 }
 
@@ -575,7 +578,7 @@ svg {
 }
 
 .editorial-row:hover {
-  background: rgba(255, 255, 255, 0.018);
+  background: var(--veil-weak);
 }
 
 .editorial-row img {
@@ -605,16 +608,14 @@ svg {
 
 .row-copy .row-kicker {
   color: var(--loud-green);
-  font-size: 0.63rem;
-  font-weight: 750;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 400;
+  letter-spacing: 0.01em;
 }
 
 .row-copy .row-kicker-muted {
   color: var(--muted);
-}
-
-.row-copy .row-kicker-violet {
-  color: var(--violet-soft);
 }
 
 .row-copy small {
@@ -664,9 +665,9 @@ svg {
   height: 42px;
   display: grid;
   place-items: center;
-  background: rgba(255, 76, 76, 0.08);
+  background: var(--youtube-wash);
   border-radius: 11px;
-  color: #ff6b6b;
+  color: var(--youtube);
 }
 
 .youtube-mark svg {
@@ -694,7 +695,11 @@ svg {
   text-overflow: ellipsis;
 }
 
-.project-list,
+.project-list {
+  display: grid;
+  gap: 10px;
+}
+
 .contact-list {
   display: grid;
   gap: 10px;
@@ -725,13 +730,150 @@ svg {
   color: var(--violet-soft);
 }
 
+/* Ponte para a lista completa. Fica depois dos três destaques, não no
+   cabeçalho da seção: ali já mora o link do GitHub. */
+.see-all {
+  min-height: 52px;
+  margin-top: 12px;
+  padding: 0 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  color: var(--copy);
+  font-size: 0.78rem;
+  font-weight: 750;
+  text-decoration: none;
+  transition:
+    background-color 180ms var(--ease-out),
+    border-color 180ms var(--ease-out),
+    color 180ms var(--ease-out);
+}
+
+.see-all:hover {
+  background: var(--surface-high);
+  border-color: var(--violet);
+  color: var(--text);
+}
+
+.see-all svg {
+  width: 16px;
+  height: 16px;
+  transition: transform 180ms var(--ease-out);
+}
+
+.see-all:hover svg {
+  transform: translateX(3px);
+}
+
+/* --------------------------------------------------------------------------
+   /mods — a lista completa. É aqui que a captura tem espaço para valer.
+   -------------------------------------------------------------------------- */
+
+.mods-list {
+  display: grid;
+  gap: 18px;
+}
+
+/* A lista sai da coluna de leitura acima de 900px, pelo mesmo motivo da
+   galeria das páginas de projeto: é onde a largura muda o que dá para ver. */
+@media (min-width: 900px) {
+  .mods-list {
+    width: 860px;
+    margin-left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+/* Informação breve do card: tipo, plataforma e situação do código. Fica fora
+   da grade de três colunas do corpo, então carrega o recuo do card. */
+.mods-meta {
+  margin: 0 18px 16px;
+  padding-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  line-height: 1.5;
+}
+
+.project-body:has(+ .mods-meta) {
+  padding-bottom: 12px;
+}
+
+.mods-meta b {
+  color: var(--copy);
+  font-weight: 400;
+}
+
+.project-card {
+  display: block;
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  color: var(--text);
+  text-decoration: none;
+  box-shadow: var(--shadow-1);
+  transition:
+    border-color 220ms var(--ease-out),
+    box-shadow 220ms var(--ease-out),
+    transform 220ms var(--ease-out);
+}
+
+.project-card:hover {
+  border-color: var(--violet);
+  box-shadow: var(--shadow-2);
+  transform: translateY(-3px);
+}
+
+.project-card .row-arrow {
+  color: var(--violet-soft);
+}
+
+/* A prova. Estava em `public/` sem aparecer na home: o projeto entrava como um
+   logo de 68px dentro de uma linha igual à do botão de contato. */
+.project-shot {
+  display: block;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: var(--night);
+  border-bottom: 1px solid var(--line);
+}
+
+.project-shot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  transition: transform 520ms var(--ease-out);
+}
+
+.project-card:hover .project-shot img {
+  transform: scale(1.025);
+}
+
+.project-body {
+  padding: 16px 18px 18px;
+  display: grid;
+  grid-template-columns: 68px minmax(0, 1fr) 22px;
+  align-items: center;
+  gap: 16px;
+}
+
 .project-mark {
   width: 68px;
   height: 68px;
   display: grid;
   place-items: center;
   overflow: hidden;
-  background: #21112f;
+  background: var(--surface-mark);
   border-radius: 12px;
 }
 
@@ -778,7 +920,7 @@ svg {
 
 .contact-row-primary .row-copy > span,
 .contact-row-primary .row-arrow {
-  color: rgba(255, 255, 255, 0.78);
+  color: var(--on-violet-soft);
 }
 
 .contact-icon {
@@ -786,16 +928,25 @@ svg {
   height: 42px;
   display: grid;
   place-items: center;
-  background: rgba(255, 255, 255, 0.055);
+  background: var(--veil);
   border-radius: 11px;
   color: var(--violet-soft);
-  font-size: 0.78rem;
-  font-weight: 800;
+}
+
+.contact-icon svg {
+  width: 19px;
+  height: 19px;
+}
+
+/* Marcas de terceiros são desenhos cheios; o resto do site é traço. */
+.brand-glyph {
+  fill: currentColor;
+  stroke: none;
 }
 
 .contact-row-primary .contact-icon {
-  background: rgba(255, 255, 255, 0.14);
-  color: #fff;
+  background: var(--veil-strong);
+  color: var(--on-violet);
 }
 
 .contact-row .row-copy > span {
@@ -1008,7 +1159,7 @@ footer p {
 
 .about-links a:last-child {
   background: var(--violet);
-  color: #fff;
+  color: var(--on-violet);
 }
 
 .case-article {
@@ -1027,7 +1178,7 @@ footer p {
   display: grid;
   place-items: center;
   overflow: hidden;
-  background: #21112f;
+  background: var(--surface-mark);
   border: 1px solid var(--line);
   border-radius: 18px;
 }
@@ -1043,15 +1194,6 @@ footer p {
   width: 74%;
   height: 74%;
   border-radius: 8px;
-}
-
-.case-kicker {
-  margin: 0 0 10px;
-  color: var(--violet-soft);
-  font-size: 0.68rem;
-  font-weight: 780;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
 }
 
 .case-hero h1 {
@@ -1134,10 +1276,16 @@ footer p {
 /* Capturas de painel ficam ilegíveis na coluna de 620px. Em telas largas a
    galeria — e só ela — passa a ocupar até 860px, sem sair de uma coluna. */
 @media (min-width: 900px) {
-  .shot-list {
+  /* O bloco inteiro sai da coluna, título junto. Só a galeria saindo deixava o
+     h2 uns 120px à direita da borda das capturas que ele anuncia. */
+  .case-block:has(.shot-list) {
     width: 860px;
     margin-left: 50%;
     transform: translateX(-50%);
+  }
+
+  .case-block:has(.shot-list) > p {
+    max-width: 62ch;
   }
 }
 
@@ -1286,7 +1434,7 @@ footer p {
    volta, senão a lista de comandos viraria um bloco de código colorido no meio
    de uma página que não tem nenhum. */
 .case-page code {
-  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  font-family: var(--font-mono);
   font-size: 0.94em;
   letter-spacing: -0.01em;
 }
@@ -1461,15 +1609,6 @@ body.easter-egg-active .profile-avatar img {
     min-height: 60px;
   }
 
-  .service-tags {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .service-tags li {
-    justify-content: center;
-  }
-
   .content-section {
     margin-top: 48px;
   }
@@ -1490,8 +1629,8 @@ body.easter-egg-active .profile-avatar img {
     height: 64px;
   }
 
-  .project-row {
-    min-height: 100px;
+  .project-row,
+  .project-body {
     padding: 12px;
     grid-template-columns: 60px minmax(0, 1fr) 18px;
     gap: 13px;
@@ -1603,7 +1742,8 @@ body.easter-egg-active .profile-avatar img {
     display: none;
   }
 
-  .project-row {
+  .project-row,
+  .project-body {
     grid-template-columns: 54px minmax(0, 1fr) 16px;
     gap: 10px;
   }
@@ -1816,7 +1956,9 @@ body.easter-egg-active .profile-avatar img {
 }
 
 .project-row:hover .row-arrow,
-.project-row:focus-visible .row-arrow {
+.project-row:focus-visible .row-arrow,
+.project-card:hover .row-arrow,
+.project-card:focus-visible .row-arrow {
   transform: translateX(4px);
 }
 
