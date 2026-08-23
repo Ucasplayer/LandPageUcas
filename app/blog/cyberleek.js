@@ -11,6 +11,9 @@
   Nenhum frame do material vazado e nenhum link para os canais de distribuição
   entram aqui: é conteúdo da Rockstar sob notificação ativa de direitos
   autorais, e hospedá-lo transformaria notícia em redistribuição.
+
+  Pela mesma razão, as imagens são só material oficial de divulgação, e cada
+  legenda diz isso — sem a ressalva, o leitor assume que está vendo o vazamento.
 */
 
 export const cyberleekPost = {
@@ -30,6 +33,13 @@ export const cyberleekPost = {
 
     { h2: "O que foi publicado" },
     "O primeiro lote saiu em 18 de agosto: dois clipes de cerca de um minuto e uma série de imagens, entre elas o que seria o mapa completo de Leonida. Os vídeos mostram Jason Duval, um dos dois protagonistas, ao lado de Lucia Caminos.",
+    {
+      figure: "/blog/gta6/lucia-prisao.jpg",
+      alt: "Lucia Caminos, de uniforme laranja e algemada, sendo escoltada por um corredor de presídio.",
+      caption:
+        "Lucia Caminos, uma das duas protagonistas. Imagem oficial da Rockstar, não do material vazado.",
+      credit: "Rockstar Games / divulgação.",
+    },
     "Nos dias seguintes vieram mais seis. Segundo os levantamentos do Insider Gaming e do Know Your Meme, o material exibiu:",
     {
       list: [
@@ -41,10 +51,24 @@ export const cyberleekPost = {
         "diálogo contextual com NPCs, com opções como acalmar ou avisar",
       ],
     },
+    {
+      figure: "/blog/gta6/leonida-rua.jpg",
+      alt: "Rua de Leonida: uma mulher atravessa em uma scooter elétrica enquanto uma iguana verde cruza o asfalto.",
+      caption:
+        "Leonida, o estado fictício onde o jogo se passa, em imagem de divulgação — os cinco condados do mapa aparecem nos vídeos do grupo.",
+      credit: "Rockstar Games / divulgação.",
+    },
     "O sétimo vídeo, de 20 de agosto, mostrou uma sequência de avião e foi liberado por votação — detalhe ao qual voltaremos. O oitavo, de 21 de agosto, trouxe um hipercarro.",
 
     { h2: "De quando é essa build?" },
     "Aqui as fontes divergem, e vale registrar a divergência em vez de escolher uma. O Insider Gaming afirma que a filmagem viria de uma build mais antiga, possivelmente de 2024 ou anterior. O Game Rant aponta na direção oposta: uma música da Tate McRae lançada em janeiro de 2025 aparece em um dos clipes, o que colocaria a build depois dessa data.",
+    {
+      figure: "/blog/gta6/bar.jpg",
+      alt: "Interior de um bar à noite, com luzes de neon e homens conversando no balcão.",
+      caption:
+        "A trilha que toca nos ambientes do jogo virou pista de datação: uma música lançada em janeiro de 2025 aparece em um dos clipes.",
+      credit: "Rockstar Games / divulgação.",
+    },
     "O consenso é que o grupo tem acesso a uma build jogável, e não a um punhado de arquivos soltos. É isso que separa este caso de um vazamento comum.",
 
     { h2: "O manifesto" },
@@ -82,6 +106,13 @@ export const cyberleekPost = {
     },
     "Segundo o GTA BOOM, vários streamers grandes preferiram não tocar no assunto ao vivo, com receio da resposta jurídica da Rockstar.",
     "Nem toda a reação foi de empolgação com o jogo em si. A Forbes registrou reclamações sobre movimentação travada nos clipes e desconforto com mecânicas como combustível nos veículos e uma moeda interna, que renderam comparações com o sistema de Robux do Roblox.",
+    {
+      figure: "/blog/gta6/briga.jpg",
+      alt: "Dois homens trocando socos em frente a uma van, na calçada de um hotel.",
+      caption:
+        "Parte das críticas mirou a movimentação e o corpo a corpo vistos nos clipes — comparados, sem contexto de build, com o material oficial.",
+      credit: "Rockstar Games / divulgação.",
+    },
 
     { h2: "A resposta da Rockstar e da Take-Two" },
     "Publicamente, silêncio. Nem a Rockstar nem a Take-Two emitiram comunicado oficial sobre o caso.",
@@ -99,9 +130,16 @@ export const cyberleekPost = {
       ],
     },
     "O calendário oficial, por enquanto, não mudou. O GTA VI continua marcado para 19 de novembro de 2026, e a Rockstar mantém um Extended Look pela Netflix previsto para 27 de agosto — cinco dias depois de o site do grupo sair do ar.",
+    {
+      figure: "/blog/gta6/barco.jpg",
+      alt: "Dois personagens conversando em um barco parado, com cerveja na mão e o mar ao fundo.",
+      caption:
+        "O que a Rockstar mostrou por vontade própria até aqui: material oficial de divulgação, o único que ilustra este post.",
+      credit: "Rockstar Games / divulgação.",
+    },
 
     { h2: "Uma nota sobre este post" },
-    "Não há aqui nenhum frame do material vazado, nem link para o site, o Telegram ou os arquivos do grupo. O conteúdo é propriedade da Rockstar e está sob notificação ativa de direitos autorais; republicá-lo mudaria a natureza deste texto de notícia para redistribuição. As citações são reproduzidas para comentário, com fonte e link logo abaixo.",
+    "Não há aqui nenhum frame do material vazado, nem link para o site, o Telegram ou os arquivos do grupo. Todas as imagens deste post são de divulgação oficial da Rockstar. O conteúdo é propriedade da Rockstar e está sob notificação ativa de direitos autorais; republicá-lo mudaria a natureza deste texto de notícia para redistribuição. As citações são reproduzidas para comentário, com fonte e link logo abaixo.",
   ],
   sources: [
     {
