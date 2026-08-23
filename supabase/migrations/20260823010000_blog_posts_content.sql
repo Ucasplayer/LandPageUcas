@@ -1,6 +1,11 @@
--- Gerado a partir do antigo app/blog/cyberleek.js.
--- Roda junto com `supabase db reset`; para aplicar em produção, cole no
--- SQL Editor do painel. É idempotente: reexecutar atualiza a linha.
+-- Carga inicial do conteúdo do blog.
+--
+-- Isto é migration e não seed porque `db push --include-seed` só reexecuta o
+-- seed se o hash dele nunca tiver sido registrado — depois disso ele atualiza
+-- o hash e não roda nada, silenciosamente. Migration sempre aplica.
+--
+-- Daqui pra frente, post novo e correção de texto se fazem no painel do
+-- Supabase, não aqui: este arquivo é só o ponto de partida.
 
 insert into public.posts
   (slug, title, summary, date, reading_time, tag, cover, cover_alt, body, sources)
@@ -21,10 +26,10 @@ values (
   },
   "O primeiro lote saiu em 18 de agosto: dois clipes de cerca de um minuto e uma série de imagens, entre elas o que seria o mapa completo de Leonida. Os vídeos mostram Jason Duval, um dos dois protagonistas, ao lado de Lucia Caminos.",
   {
-    "figure": "/blog/gta6/lucia-prisao.jpg",
-    "alt": "Lucia Caminos, de uniforme laranja e algemada, sendo escoltada por um corredor de presídio.",
-    "caption": "Lucia Caminos, uma das duas protagonistas. Imagem oficial da Rockstar, não do material vazado.",
-    "credit": "Rockstar Games / divulgação."
+    "figure": "/blog/gta6/jason-lucia-cyberleek.webp",
+    "alt": "Arte de Jason e Lucia cobrindo o rosto com bandanas, com o mascote do CYBERLEEK — um alho-poró de óculos escuros e armadura azul — sobreposto à esquerda.",
+    "caption": "Jason Duval e Lucia Caminos na arte oficial do jogo, com o mascote do CYBERLEEK sobreposto. A montagem circulou junto com os vazamentos; a arte de fundo é da Rockstar.",
+    "credit": "Base: Rockstar Games / divulgação. Mascote do CYBERLEEK sobreposto por terceiros, autoria não identificada."
   },
   "Nos dias seguintes vieram mais seis. Segundo os levantamentos do Insider Gaming e do Know Your Meme, o material exibiu:",
   {
@@ -38,9 +43,9 @@ values (
     ]
   },
   {
-    "figure": "/blog/gta6/leonida-rua.jpg",
-    "alt": "Rua de Leonida: uma mulher atravessa em uma scooter elétrica enquanto uma iguana verde cruza o asfalto.",
-    "caption": "Leonida, o estado fictício onde o jogo se passa, em imagem de divulgação — os cinco condados do mapa aparecem nos vídeos do grupo.",
+    "figure": "/blog/gta6/jason-noite.webp",
+    "alt": "Jason mirando um fuzil, de perfil, com a cidade iluminada à noite ao fundo.",
+    "caption": "Combate e nível de procurado estão entre os sistemas que aparecem nos clipes do grupo. Esta imagem, porém, é de divulgação oficial — não do material vazado.",
     "credit": "Rockstar Games / divulgação."
   },
   "O sétimo vídeo, de 20 de agosto, mostrou uma sequência de avião e foi liberado por votação — detalhe ao qual voltaremos. O oitavo, de 21 de agosto, trouxe um hipercarro.",
@@ -48,20 +53,14 @@ values (
     "h2": "De quando é essa build?"
   },
   "Aqui as fontes divergem, e vale registrar a divergência em vez de escolher uma. O Insider Gaming afirma que a filmagem viria de uma build mais antiga, possivelmente de 2024 ou anterior. O Game Rant aponta na direção oposta: uma música da Tate McRae lançada em janeiro de 2025 aparece em um dos clipes, o que colocaria a build depois dessa data.",
-  {
-    "figure": "/blog/gta6/bar.jpg",
-    "alt": "Interior de um bar à noite, com luzes de neon e homens conversando no balcão.",
-    "caption": "A trilha que toca nos ambientes do jogo virou pista de datação: uma música lançada em janeiro de 2025 aparece em um dos clipes.",
-    "credit": "Rockstar Games / divulgação."
-  },
   "O consenso é que o grupo tem acesso a uma build jogável, e não a um punhado de arquivos soltos. É isso que separa este caso de um vazamento comum.",
   {
     "h2": "O manifesto"
   },
   "O grupo publicou um texto que chamou de The CYBERLEEK Edict, com três exigências: o fim das pré-vendas digitais, a proibição de DLC pago para o modo single-player, e a garantia de que jogos de campanha continuem funcionando offline.",
   {
-    "quote": "A cada ano o anticonsumismo aperta o cerco, e a cada ano os jogadores recebem menos pelo que pagam.",
-    "by": "CYBERLEEK, no manifesto — tradução livre"
+    "by": "CYBERLEEK, no manifesto — tradução livre",
+    "quote": "A cada ano o anticonsumismo aperta o cerco, e a cada ano os jogadores recebem menos pelo que pagam."
   },
   "Sobre pré-venda, o texto argumenta que a prática nasceu de uma limitação industrial e não de um benefício ao jogador: pré-vendas existiam porque a prensagem de discos tinha limite de fabricação. Se as publicadoras querem receita antes do lançamento, diz o manifesto, que prensem discos e coloquem caixas nas prateleiras.",
   "O grupo afirmou que não pararia até a Rockstar publicar um pedido de desculpas com um compromisso concreto de melhorar. O texto cita o caso de The Crew, da Ubisoft, que exigia conexão constante e ficou injogável quando os servidores foram desligados.",
@@ -70,10 +69,16 @@ values (
   },
   "É neste ponto que a versão do protesto começa a rachar. Junto com os vazamentos, o grupo promove uma memecoin própria, a $CYBERLEEK, na rede Solana. Segundo a Dexerto, o token começou a ser negociado em 15 de agosto — antes de o vazamento viralizar — e movimentou cerca de US$ 11,8 milhões só no dia 18.",
   "O sétimo vídeo não foi escolhido ao acaso: quem tinha o token votava, em um servidor privado no Discord, em qual clipe seria publicado a seguir. A enquete durou cerca de catorze horas, e as opções incluíam direção diurna, noturna, uma sequência de moto e uma de avião.",
+  {
+    "figure": "/blog/gta6/cyberleek-mascote.webp",
+    "alt": "Cena de interior com dois personagens do jogo e o mascote do CYBERLEEK sobreposto no centro.",
+    "caption": "O mascote que assina o manifesto é o mesmo que dá nome à memecoin — a marca do protesto e a do token são uma coisa só.",
+    "credit": "Base: Rockstar Games / divulgação. Mascote do CYBERLEEK sobreposto por terceiros, autoria não identificada."
+  },
   "A campanha Stop Killing Games, citada pelo próprio manifesto como causa irmã, repudiou publicamente a associação:",
   {
-    "quote": "O motivo de ele estar vazando o GTA 6 é a memecoin dele. Isso é tudo, menos útil.",
-    "by": "Stop Killing Games, em publicação citada pela Dexerto — tradução livre"
+    "by": "Stop Killing Games, em publicação citada pela Dexerto — tradução livre",
+    "quote": "O motivo de ele estar vazando o GTA 6 é a memecoin dele. Isso é tudo, menos útil."
   },
   {
     "h2": "Cuidado com os perfis falsos"
@@ -87,17 +92,11 @@ values (
   "O público se dividiu em três campos razoavelmente claros. Há quem tenha comemorado — depois de anos de espera e adiamentos, é a primeira filmagem extensa de gameplay a aparecer. Há quem tenha pedido que ninguém amplifique o material, com medo de que a história do jogo comece a ser estragada; a presença de trechos de cutscene entre os vazamentos alimentou exatamente esse receio. E há quem tenha aproveitado para descontar na Rockstar, argumentando que a empresa mereceu.",
   "Do lado dos criadores, o streamer xQc foi um dos mais duros:",
   {
-    "quote": "Não faz bem para ninguém. Até quem compra o jogo não quer ver vazamento. As pessoas querem jogar o jogo. Se você faz isso, você não é um gamer de verdade.",
-    "by": "xQc, em transmissão citada pela Dexerto — tradução livre, trecho editado"
+    "by": "xQc, em transmissão citada pela Dexerto — tradução livre, trecho editado",
+    "quote": "Não faz bem para ninguém. Até quem compra o jogo não quer ver vazamento. As pessoas querem jogar o jogo. Se você faz isso, você não é um gamer de verdade."
   },
   "Segundo o GTA BOOM, vários streamers grandes preferiram não tocar no assunto ao vivo, com receio da resposta jurídica da Rockstar.",
   "Nem toda a reação foi de empolgação com o jogo em si. A Forbes registrou reclamações sobre movimentação travada nos clipes e desconforto com mecânicas como combustível nos veículos e uma moeda interna, que renderam comparações com o sistema de Robux do Roblox.",
-  {
-    "figure": "/blog/gta6/briga.jpg",
-    "alt": "Dois homens trocando socos em frente a uma van, na calçada de um hotel.",
-    "caption": "Parte das críticas mirou a movimentação e o corpo a corpo vistos nos clipes — comparados, sem contexto de build, com o material oficial.",
-    "credit": "Rockstar Games / divulgação."
-  },
   {
     "h2": "A resposta da Rockstar e da Take-Two"
   },
@@ -118,7 +117,7 @@ values (
   },
   "O calendário oficial, por enquanto, não mudou. O GTA VI continua marcado para 19 de novembro de 2026, e a Rockstar mantém um Extended Look pela Netflix previsto para 27 de agosto — cinco dias depois de o site do grupo sair do ar.",
   {
-    "figure": "/blog/gta6/barco.jpg",
+    "figure": "/blog/gta6/barco.webp",
     "alt": "Dois personagens conversando em um barco parado, com cerveja na mão e o mar ao fundo.",
     "caption": "O que a Rockstar mostrou por vontade própria até aqui: material oficial de divulgação, o único que ilustra este post.",
     "credit": "Rockstar Games / divulgação."
@@ -126,62 +125,56 @@ values (
   {
     "h2": "Uma nota sobre este post"
   },
-  "Não há aqui nenhum frame do material vazado, nem link para o site, o Telegram ou os arquivos do grupo. Todas as imagens deste post são de divulgação oficial da Rockstar. O conteúdo é propriedade da Rockstar e está sob notificação ativa de direitos autorais; republicá-lo mudaria a natureza deste texto de notícia para redistribuição. As citações são reproduzidas para comentário, com fonte e link logo abaixo."
+  "Não há aqui nenhum frame do material vazado, nem link para o site, o Telegram ou os arquivos do grupo. As imagens são material de divulgação da Rockstar; em duas delas, o mascote do grupo aparece sobreposto por terceiros. O conteúdo é propriedade da Rockstar e está sob notificação ativa de direitos autorais; republicá-lo mudaria a natureza deste texto de notícia para redistribuição. As citações são reproduzidas para comentário, com fonte e link logo abaixo."
 ]'::jsonb,
   '[
   {
-    "label": "Kotaku — Group Behind GTA 6 Leak Demands End to Digital Pre-Orders",
-    "url": "https://kotaku.com/gta-6-leak-group-end-digital-pre-orders-2000725477"
+    "url": "https://kotaku.com/gta-6-leak-group-end-digital-pre-orders-2000725477",
+    "label": "Kotaku — Group Behind GTA 6 Leak Demands End to Digital Pre-Orders"
   },
   {
-    "label": "Tom’s Hardware — Catastrophic GTA VI leak is a full working build",
-    "url": "https://www.tomshardware.com/video-games/catastrophic-gta-vi-leak-is-a-full-working-build-notorious-hacker-cyberleek-taunts-rockstar-games-by-spraying-the-word-leek-onto-a-wall-in-game-with-bullets"
+    "url": "https://www.tomshardware.com/video-games/catastrophic-gta-vi-leak-is-a-full-working-build-notorious-hacker-cyberleek-taunts-rockstar-games-by-spraying-the-word-leek-onto-a-wall-in-game-with-bullets",
+    "label": "Tom’s Hardware — Catastrophic GTA VI leak is a full working build"
   },
   {
-    "label": "Insider Gaming — All GTA 6 CYBERLEEK leaks so far",
-    "url": "https://insider-gaming.com/all-gta-6-cyberleek-leaks-so-far-map-honor-system-gameplay-videos/"
+    "url": "https://insider-gaming.com/all-gta-6-cyberleek-leaks-so-far-map-honor-system-gameplay-videos/",
+    "label": "Insider Gaming — All GTA 6 CYBERLEEK leaks so far"
   },
   {
-    "label": "Know Your Meme — August 2026 GTA 6 Leaks (linha do tempo)",
-    "url": "https://knowyourmeme.com/memes/events/august-2026-gta-6-leaks-2026-grand-theft-auto-vi-leak"
+    "url": "https://knowyourmeme.com/memes/events/august-2026-gta-6-leaks-2026-grand-theft-auto-vi-leak",
+    "label": "Know Your Meme — August 2026 GTA 6 Leaks (linha do tempo)"
   },
   {
-    "label": "Dexerto — Who is Cyberleek? GTA 6 leaks and memecoin explained",
-    "url": "https://www.dexerto.com/gta/who-is-cyberleek-gta-6-leaks-memecoin-explained-3400200/"
+    "url": "https://www.dexerto.com/gta/who-is-cyberleek-gta-6-leaks-memecoin-explained-3400200/",
+    "label": "Dexerto — Who is Cyberleek? GTA 6 leaks and memecoin explained"
   },
   {
-    "label": "Dexerto — xQc slams GTA 6 leaker",
-    "url": "https://www.dexerto.com/gta/xqc-slams-gta-6-leaker-and-claims-real-fans-dont-want-to-see-leaks-3400047/"
+    "url": "https://www.dexerto.com/gta/xqc-slams-gta-6-leaker-and-claims-real-fans-dont-want-to-see-leaks-3400047/",
+    "label": "Dexerto — xQc slams GTA 6 leaker"
   },
   {
-    "label": "Game Rant — Cyberleek, explained",
-    "url": "https://gamerant.com/gta-6-cyberleek-leaker-explained/"
+    "url": "https://gamerant.com/gta-6-cyberleek-leaker-explained/",
+    "label": "Game Rant — Cyberleek, explained"
   },
   {
-    "label": "TheGamer — GTA 6’s development team responds to the leaks",
-    "url": "https://www.thegamer.com/rockstar-gta6-offiical-leak-response/"
+    "url": "https://www.thegamer.com/rockstar-gta6-offiical-leak-response/",
+    "label": "TheGamer — GTA 6’s development team responds to the leaks"
   },
   {
-    "label": "Notebookcheck — CyberLeek goes offline as Take-Two and Microsoft mount legal crackdown",
-    "url": "https://www.notebookcheck.net/GTA-6-hacker-CyberLeek-goes-offline-as-Take-Two-and-Microsoft-mount-legal-crackdown.1375698.0.html"
+    "url": "https://www.notebookcheck.net/GTA-6-hacker-CyberLeek-goes-offline-as-Take-Two-and-Microsoft-mount-legal-crackdown.1375698.0.html",
+    "label": "Notebookcheck — CyberLeek goes offline as Take-Two and Microsoft mount legal crackdown"
   },
   {
-    "label": "Forbes — The GTA VI leak controversy, explained",
-    "url": "https://www.forbes.com/sites/danidiplacido/2026/08/20/the-gta-vi-leak-controversy-explained/"
+    "url": "https://www.forbes.com/sites/danidiplacido/2026/08/20/the-gta-vi-leak-controversy-explained/",
+    "label": "Forbes — The GTA VI leak controversy, explained"
   },
   {
-    "label": "GTA BOOM — Top streamers are running from the GTA 6 leak",
-    "url": "https://www.gtaboom.com/gta-6-leak-has-biggest-streamers-running-scared-39a2"
+    "url": "https://www.gtaboom.com/gta-6-leak-has-biggest-streamers-running-scared-39a2",
+    "label": "GTA BOOM — Top streamers are running from the GTA 6 leak"
   }
 ]'::jsonb
 )
 on conflict (slug) do update set
-  title        = excluded.title,
-  summary      = excluded.summary,
-  date         = excluded.date,
-  reading_time = excluded.reading_time,
-  tag          = excluded.tag,
-  cover        = excluded.cover,
-  cover_alt    = excluded.cover_alt,
-  body         = excluded.body,
-  sources      = excluded.sources;
+  title = excluded.title, summary = excluded.summary, date = excluded.date,
+  reading_time = excluded.reading_time, tag = excluded.tag, cover = excluded.cover,
+  cover_alt = excluded.cover_alt, body = excluded.body, sources = excluded.sources;

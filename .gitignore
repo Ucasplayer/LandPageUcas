@@ -13,5 +13,5 @@ dist/
 .impeccable/questions/
 ucas-nextjs-migration.patch
 
-.env*.local
-supabase/.temp/
+.vercel
+.env*
