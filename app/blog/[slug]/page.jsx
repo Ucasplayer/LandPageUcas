@@ -10,6 +10,7 @@ import { notFound } from "next/navigation";
 import { social } from "../../social-meta";
 import { SiteHeader, SiteFooter, ArrowUpRight } from "../../site-chrome";
 import { posts, findPost, formatDate } from "../posts";
+import { PostBody, PostSources } from "../post-body";
 
 export function generateStaticParams() {
   return posts.map(({ slug }) => ({ slug }));
@@ -69,11 +70,9 @@ export default async function PostPage({ params }) {
             <img src={post.cover} alt={post.coverAlt} width="640" height="360" />
           </figure>
 
-          <div className="about-copy">
-            {post.body.map((paragraph) => (
-              <p key={paragraph}>{paragraph}</p>
-            ))}
-          </div>
+          <PostBody blocks={post.body} />
+
+          <PostSources sources={post.sources} />
 
           <nav className="about-links" aria-label="Próximos passos">
             <a href="/blog">

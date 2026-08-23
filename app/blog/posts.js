@@ -5,17 +5,21 @@
   - app/blog/[slug]/page.jsx — o post inteiro
   - app/page.jsx             — o card rotativo da home
 
-  ┌──────────────────────────────────────────────────────────────────────┐
-  │ CONTEÚDO DE EXEMPLO. Nada aqui foi escrito pelo Ucas.                │
-  │ Trocar: `title`, `summary`, `body` e as imagens em public/blog/.     │
-  │ As imagens são SVGs abstratos, não fotos — substituir por capa real. │
-  └──────────────────────────────────────────────────────────────────────┘
+  O primeiro post é real e vive em app/blog/cyberleek.js, porque é longo.
+  Os três abaixo dele ainda são CONTEÚDO DE EXEMPLO: trocar `title`, `summary`,
+  `body` e as capas em public/blog/, que são SVGs abstratos e não fotos.
+
+  Um item de `body` pode ser uma string (parágrafo) ou um bloco:
+  { p }, { h2 }, { quote, by }, { list }. Ver app/blog/post-body.jsx.
 
   `date` é ISO (AAAA-MM-DD). A ordem da lista é a ordem de exibição, e o
   primeiro item é o que a home mostra como mais recente.
 */
 
+import { cyberleekPost } from "./cyberleek";
+
 export const posts = [
+  cyberleekPost,
   {
     slug: "bem-vindo-ao-blog",
     title: "Bem-vindo ao blog",

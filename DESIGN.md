@@ -94,6 +94,14 @@ O giro é de `6s`, e para sozinho quando o ponteiro entra no card, quando o foco
 
 Sem JavaScript, o card mostra o post mais recente e não gira — que é exatamente o que ele promete.
 
+### Corpo de post
+
+Um item de `body` é uma string (parágrafo) ou um bloco: `{ p }`, `{ h2 }`, `{ quote, by }`, `{ list }`. O renderizador está em `app/blog/post-body.jsx`.
+
+Citação leva filete violeta de `2px` à esquerda, sem aspas decorativas e sem itálico — a atribuição embaixo, em `Geist Mono`, já diz que a fala é de outra pessoa. Lista usa ponto violeta de `5px`, não marcador do navegador. O bloco `Fontes` fecha o post com numeração e links que abrem em aba nova com `rel="noreferrer nofollow"`.
+
+**Regra editorial:** post de notícia não hospeda nem embute o material que noticia quando esse material está sob disputa de direitos autorais. Cita, atribui e linka a fonte jornalística. Há um teste que falha se qualquer `img`, `video`, `iframe` ou `source` do post apontar para fora do domínio.
+
 ### Ícones
 
 Todo ícone é desenhado, em SVG, com traço consistente. Marca de terceiro (Discord, X, GitHub, YouTube) é desenho cheio via `.brand-glyph`. Letra ou glifo Unicode no lugar de ícone não é ícone.
