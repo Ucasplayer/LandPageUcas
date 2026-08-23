@@ -6,6 +6,10 @@
     { h2: "texto" }                → subtítulo
     { quote: "texto", by: "quem" } → citação com atribuição
     { list: ["a", "b"] }           → lista
+    { figure: "/caminho.jpg", alt: "...", caption: "...", credit: "..." }
+
+  Crédito é obrigatório em imagem de terceiro: quem tirou, de onde veio. Sem
+  isso a imagem não deveria entrar.
 
   String solta continua valendo como parágrafo: os posts antigos não precisam
   ser reescritos para o formato novo.
@@ -28,6 +32,22 @@ export function PostBody({ blocks }) {
                 <li key={item}>{item}</li>
               ))}
             </ul>
+          );
+        }
+
+        if (block.figure) {
+          return (
+            <figure className="post-figure" key={key}>
+              <img src={block.figure} alt={block.alt ?? ""} loading="lazy" />
+              {block.caption || block.credit ? (
+                <figcaption>
+                  {block.caption}
+                  {block.credit ? (
+                    <span className="post-figure-credit">{block.credit}</span>
+                  ) : null}
+                </figcaption>
+              ) : null}
+            </figure>
           );
         }
 

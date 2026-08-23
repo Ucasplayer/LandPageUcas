@@ -551,6 +551,47 @@ svg {
   border-radius: 50%;
 }
 
+/* Imagem dentro do post. Sai da coluna de leitura porque uma captura de jogo
+   em 620px não mostra nada — mesma quebra da galeria das páginas de projeto. */
+.post-figure {
+  margin: 34px 0;
+}
+
+.post-figure img {
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+}
+
+.post-figure figcaption {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+.post-figure-credit {
+  display: block;
+  margin-top: 3px;
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+}
+
+@media (min-width: 900px) {
+  .post-figure {
+    width: 860px;
+    margin-left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .post-figure figcaption {
+    max-width: 620px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
 /* Citação: filete violeta de 2px, sem aspas decorativas e sem itálico —
    a atribuição embaixo já diz que é fala de outra pessoa. */
 .post-quote {

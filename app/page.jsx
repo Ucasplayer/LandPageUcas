@@ -59,14 +59,20 @@ const blogTeaser = () => {
     )
     .join("");
 
+  // Um post só não tem para onde girar: sem pontos, sem região de status.
+  const controles =
+    posts.length > 1
+      ? `
+
+        <div class="blog-dots" data-blog-dots>${dots}</div>
+        <p class="sr-only" data-blog-status aria-live="polite"></p>`
+      : "";
+
   return `<section class="blog-teaser" aria-labelledby="blog-teaser-title">
         <h2 class="blog-teaser-heading" id="blog-teaser-title">Do blog</h2>
 
         <div class="blog-rotator" data-blog-rotator>${slides}
-        </div>
-
-        <div class="blog-dots" data-blog-dots>${dots}</div>
-        <p class="sr-only" data-blog-status aria-live="polite"></p>
+        </div>${controles}
       </section>`;
 };
 
