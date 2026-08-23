@@ -11,6 +11,7 @@ import { social } from "../../social-meta";
 import { SiteHeader, SiteFooter, ArrowUpRight } from "../../site-chrome";
 import { posts, findPost, formatDate } from "../posts";
 import { PostBody, PostSources } from "../post-body";
+import { AdSlot } from "../../ad-slot";
 
 export function generateStaticParams() {
   return posts.map(({ slug }) => ({ slug }));
@@ -71,6 +72,8 @@ export default async function PostPage({ params }) {
           </figure>
 
           <PostBody blocks={post.body} />
+
+          <AdSlot name="postEnd" />
 
           <PostSources sources={post.sources} />
 

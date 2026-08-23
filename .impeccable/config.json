@@ -1,0 +1,14 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "overused-font",
+        "value": "geist",
+        "createdAt": "2026-08-23T00:16:06.273Z",
+        "reason": "Ucas confirmou manter a Geist quando perguntei diretamente sobre esta marcacao, e depois pediu a troca da fonte de sistema (item 4 da auditoria) e aceitou o resultado em Geist ao longo de varias revisoes."
+      }
+    ]
+  }
+}

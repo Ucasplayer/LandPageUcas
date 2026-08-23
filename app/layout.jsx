@@ -63,6 +63,11 @@ export const metadata = {
   icons: {
     icon: "/favicon.svg",
   },
+  // Verificação de propriedade no AdSense. É só uma meta tag: não carrega
+  // script e não muda nada para quem visita.
+  other: {
+    "google-adsense-account": "ca-pub-4142559316919538",
+  },
   // Vale para a home e para qualquer rota que não declare a sua própria carta.
   ...social({
     title: "Ucas — Editor de vídeo & Developer",

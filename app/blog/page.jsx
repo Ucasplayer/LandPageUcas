@@ -6,6 +6,7 @@
 import { social } from "../social-meta";
 import { SiteHeader, SiteFooter } from "../site-chrome";
 import { posts, formatDate } from "./posts";
+import { AdSlot } from "../ad-slot";
 
 export const metadata = {
   title: "Blog — Ucas",
@@ -78,6 +79,8 @@ export default function BlogPage() {
               </a>
             ))}
           </div>
+
+          <AdSlot name="listEnd" />
         </article>
 
         <SiteFooter note="Edição de vídeo e desenvolvimento para projetos de Minecraft." />

@@ -574,6 +574,41 @@ svg {
   line-height: 1.5;
 }
 
+/* --------------------------------------------------------------------------
+   Espaço de anúncio
+   Dois estados no CSS; o terceiro (vazio) o componente resolve tirando o
+   elemento da página. Pendente reserva altura, para o anúncio não empurrar o
+   texto quando chegar. Cheio ganha moldura e rótulo.
+   -------------------------------------------------------------------------- */
+
+.ad-slot {
+  margin: 42px 0;
+  display: grid;
+  gap: 10px;
+  min-height: 152px;
+}
+
+.ad-slot[data-estado="cheio"] {
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+}
+
+/* Enquanto não se sabe se vai preencher, o rótulo não aparece: prometer
+   publicidade e não entregar nada é pior do que o espaço reservado. */
+.ad-slot[data-estado="pendente"] .ad-slot-label {
+  visibility: hidden;
+}
+
+.ad-slot-label {
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
 .post-sources {
   margin-top: 46px;
   padding-top: 22px;

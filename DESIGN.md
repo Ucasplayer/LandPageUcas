@@ -102,6 +102,14 @@ Citação leva filete violeta de `2px` à esquerda, sem aspas decorativas e sem 
 
 **Regra editorial:** post de notícia não hospeda nem embute o material que noticia quando esse material está sob disputa de direitos autorais. Cita, atribui e linka a fonte jornalística. Há um teste que falha se qualquer `img`, `video`, `iframe` ou `source` do post apontar para fora do domínio.
 
+### Espaço de anúncio
+
+Anúncio existe apenas onde há uma unidade configurada em `app/ads.js` — hoje, só no fim de um post. A home, `/sobre`, `/curriculo`, `/mods` e as páginas de projeto ficam limpas: são elas que convertem visitante em conversa. O script do AdSense é carregado pelo próprio `AdSlot`, e não por um layout, então ele entra exatamente nas páginas que têm anúncio e nenhuma outra paga o custo de rede dele.
+
+O bloco tem três estados. **Pendente** reserva `152px` de altura, para o anúncio não empurrar o texto ao chegar. **Cheio** ganha moldura, fundo de superfície e o rótulo `Publicidade`. **Vazio** sai da página inteiro — sem moldura, sem rótulo, sem buraco.
+
+O terceiro estado é o que mais acontece na prática, entre inventário vazio e bloqueador de anúncio, e é o que separa isto de colar o snippet cru. O componente decide pelo `data-ad-status` que o AdSense escreve no `<ins>`, com prazo de 2,5s para o caso de o script nunca rodar. Há um teste que falha se um anúncio não preenchido deixar qualquer altura na página.
+
 ### Ícones
 
 Todo ícone é desenhado, em SVG, com traço consistente. Marca de terceiro (Discord, X, GitHub, YouTube) é desenho cheio via `.brand-glyph`. Letra ou glifo Unicode no lugar de ícone não é ícone.
