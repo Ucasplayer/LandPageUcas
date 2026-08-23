@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import path from "node:path";
 import ClientInit from "./client-init";
-import { posts, formatDate } from "./blog/posts";
+import { getPosts, formatDate } from "./blog/posts";
 
 const source = readFileSync(path.join(process.cwd(), "src", "home.html"), "utf8");
 
@@ -12,10 +12,10 @@ const escapeHtml = (value) =>
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;");
 
-// O card do blog é montado aqui, no servidor, a partir de app/blog/posts.js.
-// Assim os posts vivem em um arquivo só: a home não repete título nem resumo.
+// O card do blog é montado aqui, no servidor, com os posts que vêm do Supabase
+// (app/blog/posts.js). Assim a home não repete título nem resumo.
 // Todo slide aponta para /blog — o card apresenta, a lista é o destino.
-const blogTeaser = () => {
+const blogTeaser = (posts) => {
   if (posts.length === 0) return "";
 
   const slides = posts
@@ -76,16 +76,27 @@ const blogTeaser = () => {
       </section>`;
 };
 
-const bodyMarkup =
+// O HTML da home é lido e limpo uma vez só, no boot. Só o teaser depende dos
+// posts, e por isso ele entra por último, já dentro da requisição.
+const shell =
   source
     .match(/<body[^>]*>([\s\S]*?)<\/body>/i)?.[1]
     ?.replace(
       /<script[^>]*src="\/src\/main\.js"[^>]*><\/script>/i,
       "",
-    )
-    ?.replace(/<!--\s*blog-teaser:[\s\S]*?-->/, blogTeaser()) ?? "";
+    ) ?? "";
 
-export default function HomePage() {
+export default async function HomePage() {
+  const posts = await getPosts();
+
+  // Função no lugar de string: título de post com $& ou $' não vira caractere
+  // de substituição por acidente.
+  const teaser = blogTeaser(posts);
+  const bodyMarkup = shell.replace(
+    /<!--\s*blog-teaser:[\s\S]*?-->/,
+    () => teaser,
+  );
+
   return (
     <>
       <div dangerouslySetInnerHTML={{ __html: bodyMarkup }} />

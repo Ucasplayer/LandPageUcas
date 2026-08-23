@@ -1,11 +1,11 @@
 /*
   A lista do blog. Mesmo desenho de card de /mods: capa em cima, texto embaixo.
-  O conteúdo é de exemplo — ver o cabeçalho de app/blog/posts.js.
+  Os posts vêm do Supabase — ver o cabeçalho de app/blog/posts.js.
 */
 
 import { social } from "../social-meta";
 import { SiteHeader, SiteFooter } from "../site-chrome";
-import { posts, formatDate } from "./posts";
+import { getPosts, formatDate } from "./posts";
 import { AdSlot } from "../ad-slot";
 
 export const metadata = {
@@ -20,7 +20,9 @@ export const metadata = {
   }),
 };
 
-export default function BlogPage() {
+export default async function BlogPage() {
+  const posts = await getPosts();
+
   return (
     <>
       <a className="skip-link" href="#conteudo">

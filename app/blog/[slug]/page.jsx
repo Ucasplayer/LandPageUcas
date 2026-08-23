@@ -2,24 +2,25 @@
   Um post. Reaproveita a coluna de leitura das páginas de projeto: nada de
   layout novo para um texto corrido.
 
-  O conteúdo é de exemplo — ver o cabeçalho de app/blog/posts.js.
+  Os posts vêm do Supabase — ver o cabeçalho de app/blog/posts.js.
 */
 
 import { notFound } from "next/navigation";
 
 import { social } from "../../social-meta";
 import { SiteHeader, SiteFooter, ArrowUpRight } from "../../site-chrome";
-import { posts, findPost, formatDate } from "../posts";
+import { getPosts, findPost, formatDate } from "../posts";
 import { PostBody, PostSources } from "../post-body";
 import { AdSlot } from "../../ad-slot";
 
-export function generateStaticParams() {
+export async function generateStaticParams() {
+  const posts = await getPosts();
   return posts.map(({ slug }) => ({ slug }));
 }
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
-  const post = findPost(slug);
+  const post = await findPost(slug);
   if (!post) return {};
 
   return {
@@ -37,7 +38,7 @@ export async function generateMetadata({ params }) {
 
 export default async function PostPage({ params }) {
   const { slug } = await params;
-  const post = findPost(slug);
+  const post = await findPost(slug);
   if (!post) notFound();
 
   return (

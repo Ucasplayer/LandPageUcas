@@ -12,3 +12,6 @@ dist/
 .impeccable-surface-brief.md
 .impeccable/questions/
 ucas-nextjs-migration.patch
+
+.env*.local
+supabase/.temp/
