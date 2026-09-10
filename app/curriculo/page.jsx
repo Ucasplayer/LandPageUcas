@@ -48,14 +48,37 @@ export default function CurriculoPage() {
             <section className="resume-block" aria-labelledby="resume-summary-title">
               <h3 id="resume-summary-title">Resumo profissional</h3>
               <p>
-                Profissional de TI com experiência em suporte técnico, edição de vídeo e
-                desenvolvimento de projetos. Atuo na criação de conteúdo para redes sociais,
-                no desenvolvimento de mods e launchers para Minecraft e em marketing digital.
+                Profissional de TI com experiência em análise de dados, suporte técnico,
+                edição de vídeo e desenvolvimento de projetos. Atuo com Power BI e planilhas
+                na área de Dados/BI, na criação de conteúdo para redes sociais, no
+                desenvolvimento de mods e launchers para Minecraft e em marketing digital.
               </p>
             </section>
 
             <section className="resume-block" aria-labelledby="resume-experience-title">
               <h3 id="resume-experience-title">Experiência profissional</h3>
+
+              <div className="resume-entry">
+                <div className="resume-entry-head">
+                  <strong>Estagiário de Dados/BI</strong>
+                  <span>2026 – atual</span>
+                </div>
+                <p className="resume-entry-company">Mega Matte</p>
+                <ul>
+                  <li>
+                    Desenvolvo e mantenho dashboards em Power BI para acompanhamento de
+                    indicadores e apoio à tomada de decisão.
+                  </li>
+                  <li>
+                    Organizo e trato planilhas de dados, garantindo consistência e
+                    confiabilidade das informações usadas nas análises.
+                  </li>
+                  <li>
+                    Realizo análises de dados que geram insights para as áreas internas da
+                    empresa.
+                  </li>
+                </ul>
+              </div>
 
               <div className="resume-entry">
                 <div className="resume-entry-head">
@@ -112,6 +135,8 @@ export default function CurriculoPage() {
             <section className="resume-block" aria-labelledby="resume-skills-title">
               <h3 id="resume-skills-title">Habilidades técnicas</h3>
               <ul className="resume-skill-tags">
+                <li>Power BI</li>
+                <li>Análise de dados</li>
                 <li>Edição de vídeo</li>
                 <li>Desenvolvimento de projetos</li>
                 <li>Suporte de TI</li>
