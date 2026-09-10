@@ -594,6 +594,50 @@ svg {
 
 /* Citação: filete violeta de 2px, sem aspas decorativas e sem itálico —
    a atribuição embaixo já diz que é fala de outra pessoa. */
+/* Vídeo embutido no post (YouTube) — mesma quebra de largura que .post-figure,
+   mas em 16:9 responsivo via aspect-ratio, sem precisar de padding-hack. */
+.post-video {
+  margin: 34px 0;
+}
+
+.post-video iframe {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+}
+
+.post-video figcaption {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+@media (min-width: 900px) {
+  .post-video {
+    width: 860px;
+    margin-left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .post-video figcaption {
+    max-width: 620px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* Post do X/Twitter embutido — fica na largura da coluna de leitura, como uma
+   citação: o embed já tem moldura própria, não precisa do tratamento largo
+   de .post-figure/.post-video. */
+.post-tweet {
+  margin: 28px auto;
+  max-width: 550px;
+  min-height: 120px;
+}
+
 .post-quote {
   margin: 28px 0;
   padding-left: 18px;
